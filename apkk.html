@@ -44,12 +44,10 @@
         main { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
         header { height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; border-bottom: 1px solid var(--glass-border); }
         
-        /* Стили для правой части хедера */
         .header-right { display: flex; align-items: center; gap: 10px; }
-        
         .balance-card { padding: 10px 20px; border-radius: 30px; font-weight: 800; background: rgba(0,255,136,0.1); border: 1px solid var(--accent); color: var(--accent); white-space: nowrap; }
 
-        /* Переключатель языков */
+        /* Переключатель языка */
         .lang-switcher { position: relative; display: flex; align-items: center; }
         .lang-btn { 
             background: rgba(0,255,136,0.1); border: 1px solid var(--accent); 
@@ -60,7 +58,6 @@
             position: absolute; top: 110%; right: 0; background: #1a1c2c; 
             border: 1px solid var(--glass-border); border-radius: 10px; 
             display: none; flex-direction: column; z-index: 1001; min-width: 100px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
         .lang-dropdown.open { display: flex; }
         .lang-option { padding: 10px; cursor: pointer; color: #fff; font-size: 13px; border-radius: 10px; }
@@ -81,10 +78,10 @@
             aside.open { left: 0; }
         }
 
-        /* Мобильные исправления для кнопки и хедера */
+        /* Мобильные исправления для кнопки */
         @media (max-width: 600px) {
-            header { padding: 0 15px; }
-            .balance-card { font-size: 12px; padding: 8px 12px; }
+            header { padding: 0 10px; }
+            .balance-card { font-size: 11px; padding: 8px 10px; }
             
             .header-right .btn { 
                 font-size: 10px !important; 
@@ -97,10 +94,10 @@
                 align-items: center;
                 justify-content: center;
             }
-            #langLabel { display: none; } /* Скрываем текст RU/EN, оставляем только флаг */
+            .lang-label { display: none; } /* Оставляем только флаг на мобилках */
         }
         
-        @media (max-width: 380px) {
+        @media (max-width: 360px) {
             .balance-card { display: none; }
         }
     </style>
@@ -124,11 +121,11 @@
             <div class="header-right">
                 <div class="lang-switcher">
                     <button class="lang-btn" onclick="toggleLang()">
-                        <span id="langFlag">🇷🇺</span> <span id="langLabel">RU</span>
+                        <span id="langFlag">🇷🇺</span> <span id="langLabel" class="lang-label">RU</span>
                     </button>
                     <div class="lang-dropdown" id="langDropdown">
-                        <div class="lang-option" onclick="setLang('ru')">🇷🇺 RU</div>
-                        <div class="lang-option" onclick="setLang('en')">🇬🇧 EN</div>
+                        <div class="lang-option" onclick="setLang('ru')">🇷🇺 RU (₽)</div>
+                        <div class="lang-option" onclick="setLang('en')">🇬🇧 EN ($)</div>
                     </div>
                 </div>
                 <a href="https://lkzq.cc/644450" class="btn" style="width: auto; padding: 10px 15px;" data-i18n="header_cta">РЕГИСТРАЦИЯ</a>
@@ -178,50 +175,25 @@
     </main>
 
     <script>
-        // Словарь переводов
+        const EXCHANGE_RATE = 100; // 100р = 1$
+
         const translations = {
             ru: {
-                nav_demo: "🎮 Демо-игра",
-                nav_signals: "⚡ Сигналы",
-                nav_promo: "🎁ПРОМОКОД",
-                nav_strategy: "📚 Стратегии",
-                nav_apk: "📱 MINES APK",
-                balance_label: "Баланс:",
-                header_cta: "РЕГИСТРАЦИЯ",
-                install_title: "Установка приложения",
-                install_desc: "Установите наш веб-сервис как приложение для мгновенного доступа к сигналам.",
-                android_title: "🤖 Для Android",
-                android_step1_h: "Открыть настройки Chrome",
-                android_step1_p: "Нажмите на иконку трёх точек (⋮) в верхнем углу браузера.",
-                android_step2_h: "Добавить на экран",
-                android_step2_p: "Выберите пункт «Установить приложение» или «Добавить на гл. экран».",
-                ios_title: "🍏 Для iOS (iPhone)",
-                ios_step1_h: "Нажать «Поделиться»",
-                ios_step1_p: "В браузере Safari нажмите на центральную иконку со стрелкой вверх.",
-                ios_step2_h: "Экран «Домой»",
-                ios_step2_p: "Прокрутите список функций и нажмите кнопку «На экран Домой».",
+                nav_demo: "🎮 Демо-игра", nav_signals: "⚡ Сигналы", nav_promo: "🎁ПРОМОКОД", nav_strategy: "📚 Стратегии", nav_apk: "📱 MINES APK",
+                balance_label: "Баланс:", header_cta: "РЕГИСТРАЦИЯ", install_title: "Установка приложения", install_desc: "Установите наш веб-сервис как приложение для мгновенного доступа к сигналам.",
+                android_title: "🤖 Для Android", android_step1_h: "Открыть настройки Chrome", android_step1_p: "Нажмите на иконку трёх точек (⋮) в верхнем углу браузера.",
+                android_step2_h: "Добавить на экран", android_step2_p: "Выберите пункт «Установить приложение» или «Добавить на гл. экран».",
+                ios_title: "🍏 Для iOS (iPhone)", ios_step1_h: "Нажать «Поделиться»", ios_step1_p: "В браузере Safari нажмите на центральную иконку со стрелкой вверх.",
+                ios_step2_h: "Экран «Домой»", ios_step2_p: "Прокрутите список функций и нажмите кнопку «На экран Домой».",
                 download_btn: "СКАЧАТЬ ОРИГИНАЛЬНЫЙ APK"
             },
             en: {
-                nav_demo: "🎮 Demo Game",
-                nav_signals: "⚡ Signals",
-                nav_promo: "🎁PROMOCODE",
-                nav_strategy: "📚 Strategies",
-                nav_apk: "📱 MINES APK",
-                balance_label: "Balance:",
-                header_cta: "REGISTRATION",
-                install_title: "App Installation",
-                install_desc: "Install our web service as an app for instant signals access.",
-                android_title: "🤖 For Android",
-                android_step1_h: "Open Chrome Settings",
-                android_step1_p: "Tap the three dots icon (⋮) in the top corner of the browser.",
-                android_step2_h: "Add to Home Screen",
-                android_step2_p: "Select 'Install app' or 'Add to Home screen'.",
-                ios_title: "🍏 For iOS (iPhone)",
-                ios_step1_h: "Tap 'Share'",
-                ios_step1_p: "In Safari browser, tap the center icon with the arrow pointing up.",
-                ios_step2_h: "Home Screen",
-                ios_step2_p: "Scroll down and tap 'Add to Home Screen' button.",
+                nav_demo: "🎮 Demo Game", nav_signals: "⚡ Signals", nav_promo: "🎁PROMOCODE", nav_strategy: "📚 Strategies", nav_apk: "📱 MINES APK",
+                balance_label: "Balance:", header_cta: "REGISTRATION", install_title: "App Installation", install_desc: "Install our web service as an app for instant access to signals.",
+                android_title: "🤖 For Android", android_step1_h: "Open Chrome Settings", android_step1_p: "Tap the three dots icon (⋮) in the top corner of the browser.",
+                android_step2_h: "Add to Home Screen", android_step2_p: "Select 'Install app' or 'Add to Home screen'.",
+                ios_title: "🍏 For iOS (iPhone)", ios_step1_h: "Tap 'Share'", ios_step1_p: "In Safari browser, tap the center icon with the arrow pointing up.",
+                ios_step2_h: "Home Screen", ios_step2_p: "Scroll down and tap 'Add to Home Screen' button.",
                 download_btn: "DOWNLOAD ORIGINAL APK"
             }
         };
@@ -231,36 +203,39 @@
         }
 
         function setLang(lang) {
+            // 1. Перевод текстов
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) {
-                    el.innerText = translations[lang][key];
-                }
+                if (translations[lang][key]) el.innerText = translations[lang][key];
             });
+
+            // 2. Смена валюты
+            const baseBalance = parseFloat(localStorage.getItem('m_bal')) || 5000;
+            const balanceEl = document.getElementById('balance');
             
+            if (lang === 'en') {
+                const inUSD = (baseBalance / EXCHANGE_RATE).toFixed(2);
+                balanceEl.innerText = inUSD + " $";
+            } else {
+                balanceEl.innerText = Math.floor(baseBalance) + " ₽";
+            }
+
+            // 3. Обновление кнопки выбора
             document.getElementById('langLabel').innerText = lang.toUpperCase();
             document.getElementById('langFlag').innerText = lang === 'ru' ? '🇷🇺' : '🇬🇧';
             document.getElementById('langDropdown').classList.remove('open');
+            
             localStorage.setItem('selected_lang', lang);
         }
 
-        // Закрытие дропдауна при клике вне
-        window.addEventListener('click', (e) => {
+        // Закрытие дропдауна при клике мимо
+        window.onclick = function(e) {
             if (!e.target.closest('.lang-switcher')) {
                 document.getElementById('langDropdown').classList.remove('open');
             }
-        });
-
-        function goTo(url) {
-            window.location.href = url;
         }
 
         window.onload = () => {
-            // Загрузка баланса
-            let balance = parseFloat(localStorage.getItem('m_bal')) || 5000;
-            document.getElementById('balance').innerText = Math.floor(balance) + " ₽";
-            
-            // Загрузка языка
             const savedLang = localStorage.getItem('selected_lang') || 'ru';
             setLang(savedLang);
         };
