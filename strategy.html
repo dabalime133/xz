@@ -1,455 +1,536 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    
-    <title>Стратегии игры Mines 2026 – Как выигрывать в Мины | Mines Strategies</title>
-    <meta name="description" content="Полное руководство по стратегиям Mines. Обучение игре, тактики нейросети и советы по заработку.">
-    <link rel="canonical" href="https://minespromo.top/strategy.html" />
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=106419573','ym');
+    ym(106419573,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/106419573" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
 
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106419573', 'ym');
-        ym(106419573, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover">
+  <title>Стратегии игры Mines 2026 – Как выигрывать в Мины | Mines Strategies</title>
+  <meta name="description" content="Полное руководство по стратегиям Mines. Обучение игре, тактики нейросети и советы по заработку.">
+  <link rel="canonical" href="https://minespromo.top/strategy.html" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-grad: radial-gradient(circle at top right, #1a1c2c, #090a0f);
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent: #00ff88;
-            --accent-glow: 0 0 15px rgba(0, 255, 136, 0.5);
-            --text: #ffffff;
-            --text-muted: #a0a0b0;
-            --danger: #ff0055;
-            --header-h: 70px;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
-        
-        body { 
-            background: var(--bg-grad); 
-            color: var(--text); 
-            height: 100vh; 
-            overflow: hidden; 
-            display: flex; 
-        }
+  <style>
+    /* ══════════ DESIGN SYSTEM ══════════ */
+    :root {
+      --bg-grad:     radial-gradient(ellipse 120% 80% at 80% 10%, #141628 0%, #090a0f 60%);
+      --glass:       rgba(255,255,255,0.035);
+      --glass-b:     rgba(255,255,255,0.08);
+      --glass-strong:rgba(255,255,255,0.07);
+      --accent:      #00ff88;
+      --accent-dim:  rgba(0,255,136,0.12);
+      --accent-glow: 0 0 20px rgba(0,255,136,0.55);
+      --gold:        #f5c542;
+      --blue:        #00d4ff;
+      --danger:      #ff3366;
+      --text:        #f0f0f8;
+      --muted:       #8888aa;
+      --sidebar-w:   268px;
+      --header-h:    68px;
+      --radius:      18px;
+      --radius-sm:   12px;
+      --touch:       44px;
+    }
 
-        /* Sidebar & Overlay */
-        #overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(4px);
-            z-index: 998;
-            display: none;
-        }
-        #overlay.active { display: block; }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; font-family:'Montserrat',sans-serif; -webkit-tap-highlight-color:transparent; }
+    html,body { min-height:100dvh; overflow-x:hidden; }
+    body { background:var(--bg-grad); background-attachment:fixed; color:var(--text); display:flex; -webkit-font-smoothing:antialiased; overflow:hidden; height:100dvh; }
+    a { color:inherit; text-decoration:none; }
 
-        aside { 
-            width: 280px; 
-            padding: 25px; 
-            display: flex; 
-            flex-direction: column; 
-            gap: 10px; 
-            border-right: 1px solid var(--glass-border); 
-            z-index: 1000; 
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); 
-            background: rgba(10, 11, 20, 0.95); 
-            backdrop-filter: blur(20px); 
-        }
+    body::before {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity:.4;
+    }
 
-        .logo { font-size: 26px; font-weight: 900; text-shadow: var(--accent-glow); margin-bottom: 20px; }
-        .logo span { color: var(--accent); }
+    /* ── SIDEBAR ── */
+    aside#sidebar {
+      width:var(--sidebar-w); height:100dvh; position:sticky; top:0; flex-shrink:0;
+      padding:28px 18px; display:flex; flex-direction:column; gap:6px;
+      border-right:1px solid var(--glass-b); z-index:1000;
+      background:rgba(7,8,14,0.75); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+      transition:left .32s cubic-bezier(.4,0,.2,1);
+    }
+    .logo {
+      font-size:22px; font-weight:900; letter-spacing:-1px;
+      text-shadow:var(--accent-glow); margin-bottom:20px; padding:0 4px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .logo span { color:var(--accent); }
+    .logo-icon { width:32px; height:32px; background:var(--accent); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+    .nav-item {
+      padding:12px 16px; border-radius:var(--radius-sm); cursor:pointer;
+      transition:background .22s,color .22s,border-color .22s;
+      color:var(--muted); font-weight:600; font-size:13px; display:flex; align-items:center; gap:11px;
+      min-height:var(--touch); border:1px solid transparent; text-decoration:none;
+    }
+    .nav-item:hover { background:var(--glass); color:var(--text); border-color:var(--glass-b); }
+    .nav-item.active {
+      background:linear-gradient(135deg,rgba(0,255,136,0.12),rgba(0,255,136,0.04));
+      color:var(--accent); border-color:rgba(0,255,136,0.3);
+    }
+    .nav-divider { height:1px; background:var(--glass-b); margin:8px 0; }
 
-        .nav-item { 
-            padding: 14px 18px; 
-            border-radius: 12px; 
-            cursor: pointer; 
-            transition: 0.3s; 
-            color: var(--text-muted); 
-            font-weight: 600; 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-            text-decoration: none;
-        }
-        .nav-item:hover, .nav-item.active { 
-            background: var(--glass); 
-            color: var(--accent); 
-            border: 1px solid rgba(0,255,136,0.2); 
-        }
+    /* ── MAIN ── */
+    main { flex:1; display:flex; flex-direction:column; min-width:0; height:100dvh; overflow:hidden; position:relative; z-index:1; }
 
-        main { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
+    /* ── HEADER ── */
+    header {
+      height:var(--header-h); display:flex; justify-content:space-between; align-items:center;
+      padding:0 24px; border-bottom:1px solid var(--glass-b); gap:12px; flex-shrink:0;
+      background:rgba(7,8,14,0.85); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    }
+    #m-toggle {
+      cursor:pointer; font-size:20px; display:none;
+      min-width:var(--touch); min-height:var(--touch); align-items:center; justify-content:center;
+      border-radius:10px; border:1px solid var(--glass-b); background:var(--glass); color:var(--muted);
+      transition:background .2s,border-color .2s;
+    }
+    #m-toggle:hover { background:var(--glass-strong); border-color:rgba(0,255,136,0.3); color:var(--accent); }
+    .balance-card {
+      padding:8px 16px; border-radius:30px; font-weight:800; font-size:13px;
+      background:rgba(0,255,136,0.08); border:1px solid rgba(0,255,136,0.35); color:var(--accent); white-space:nowrap;
+    }
+    .header-right { display:flex; align-items:center; gap:10px; }
 
-        /* HEADER OPTIMIZATION */
-        header { 
-            height: var(--header-h); 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 0 20px; 
-            border-bottom: 1px solid var(--glass-border); 
-            flex-shrink: 0; 
-            background: rgba(9, 10, 15, 0.8);
-            backdrop-filter: blur(10px);
-        }
-        
-        .header-left { display: flex; align-items: center; gap: 15px; }
-        .header-controls { display: flex; align-items: center; gap: 10px; }
+    .lang-switcher { position:relative; display:flex; align-items:center; }
+    .lang-btn {
+      display:flex; align-items:center; gap:7px; padding:8px 14px;
+      background:var(--glass); border:1px solid var(--glass-b);
+      border-radius:30px; cursor:pointer; font-weight:700; font-size:12px; color:var(--muted);
+      transition:all .22s; min-height:var(--touch);
+    }
+    .lang-btn:hover,.lang-btn.open { background:var(--accent-dim); border-color:rgba(0,255,136,0.5); color:var(--accent); }
+    #langFlag { font-size:16px; line-height:1; }
+    .lang-dropdown {
+      position:absolute; top:calc(100% + 8px); right:0; min-width:130px;
+      background:#0b0c16; border:1px solid rgba(0,255,136,0.3); border-radius:14px;
+      padding:5px; z-index:5000; display:none; flex-direction:column; gap:2px;
+      box-shadow:0 12px 40px rgba(0,0,0,0.85);
+    }
+    .lang-dropdown.open { display:flex; animation:fadeDown .18s ease; }
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)} }
+    .lang-option {
+      display:flex; align-items:center; gap:9px; padding:10px 13px; border-radius:10px;
+      cursor:pointer; font-size:12px; font-weight:700; color:var(--muted);
+      transition:background .18s,color .18s; min-height:var(--touch);
+    }
+    .lang-option:hover,.lang-option.active { background:var(--accent-dim); color:var(--accent); }
 
-        .balance-card { 
-            padding: 8px 15px; 
-            border-radius: 20px; 
-            font-weight: 800; 
-            background: rgba(0,255,136,0.1); 
-            border: 1px solid var(--accent); 
-            color: var(--accent); 
-            font-size: 14px;
-            white-space: nowrap;
-        }
+    .btn-casino {
+      padding:9px 18px; background:var(--accent); color:#000; border:none;
+      border-radius:30px; font-weight:900; font-size:12px; cursor:pointer;
+      box-shadow:var(--accent-glow); transition:transform .18s,filter .18s;
+      text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+      white-space:nowrap; min-height:var(--touch);
+    }
+    .btn-casino:hover { transform:scale(1.03); filter:brightness(1.1); }
 
-        .lang-switcher { position: relative; }
-        .lang-selected { 
-            background: var(--glass); 
-            border: 1px solid var(--glass-border); 
-            padding: 8px 12px; 
-            border-radius: 12px; 
-            cursor: pointer; 
-            font-weight: 700; 
-            font-size: 13px;
-            display: flex; 
-            align-items: center; 
-            gap: 5px; 
-        }
-        .lang-dropdown { 
-            position: absolute; top: 120%; right: 0; background: #1a1c2c; 
-            border: 1px solid var(--glass-border); border-radius: 12px; 
-            overflow: hidden; display: none; width: 100px; z-index: 1100;
-        }
-        .lang-dropdown.open { display: block; }
-        .lang-option { padding: 10px; cursor: pointer; font-size: 13px; transition: 0.2s; }
-        .lang-option:hover { background: var(--accent); color: #000; }
+    /* ── CONTENT ── */
+    .container { flex:1; overflow-y:auto; padding:26px 24px; scroll-behavior:smooth; }
 
-        .btn-reg { 
-            background: var(--accent); 
-            color: #000; 
-            padding: 10px 18px; 
-            border-radius: 12px; 
-            font-weight: 800; 
-            text-decoration: none; 
-            font-size: 13px;
-            box-shadow: var(--accent-glow);
-            transition: 0.3s;
-        }
+    /* ── PAGE HEADER ── */
+    .page-header { margin-bottom:24px; }
+    .page-header h1 { font-size:clamp(20px,4vw,26px); font-weight:900; color:var(--accent); text-shadow:var(--accent-glow); margin-bottom:6px; }
+    .page-header p { font-size:13px; color:var(--muted); line-height:1.6; }
 
-        /* Content Container */
-        .container { flex: 1; overflow-y: auto; padding: 25px; scroll-behavior: smooth; }
-        
-        .info-card { 
-            padding: 20px; 
-            border-radius: 18px; 
-            background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-            border: 1px solid var(--glass-border); 
-            margin-bottom: 20px; 
-        }
-        .info-card h3 { color: var(--accent); margin-bottom: 8px; font-size: 18px; }
-        .info-card p { font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+    /* ── INTRO CARD ── */
+    .intro-card {
+      background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius);
+      padding:18px 20px; margin-bottom:22px;
+      box-shadow:0 4px 20px rgba(0,0,0,0.3),inset 0 1px 0 rgba(255,255,255,0.05);
+    }
+    .intro-card p { font-size:13px; color:var(--muted); line-height:1.65; }
 
-        .content-section h1 { font-size: 28px; margin-bottom: 20px; line-height: 1.2; }
-        .content-section h2 { font-size: 22px; color: #fff; margin: 35px 0 15px; border-bottom: 1px solid var(--glass-border); padding-bottom: 8px; }
-        .content-section p { color: var(--text-muted); line-height: 1.6; margin-bottom: 15px; font-size: 15px; }
+    /* ── STRATEGY CARDS ── */
+    .strategy-card {
+      background:var(--glass); border:1px solid var(--glass-b);
+      border-radius:var(--radius); padding:20px 22px; margin-bottom:14px;
+      position:relative; overflow:hidden;
+      transition:border-color .22s,box-shadow .22s;
+    }
+    .strategy-card::before {
+      content:''; position:absolute; top:0; left:0; bottom:0; width:4px; border-radius:4px 0 0 4px;
+    }
+    .strategy-card.green::before { background:var(--accent); }
+    .strategy-card.gold::before { background:var(--gold); }
+    .strategy-card.red::before { background:var(--danger); }
+    .strategy-card.blue::before { background:var(--blue); }
+    .strategy-card:hover { border-color:rgba(255,255,255,0.14); box-shadow:0 6px 24px rgba(0,0,0,0.4); }
+    .strategy-card h3 { font-size:15px; font-weight:900; margin-bottom:4px; color:#fff; display:flex; align-items:center; gap:8px; }
+    .strategy-card .sub { font-size:12px; color:var(--muted); margin-bottom:12px; padding-left:26px; }
+    .strategy-card ul { list-style:none; font-size:13px; padding-left:4px; }
+    .strategy-card ul li { margin-bottom:5px; color:var(--muted); }
+    .strategy-card ul li b { color:var(--text); }
 
-        /* TOC */
-        .toc-container { background: rgba(0, 0, 0, 0.3); border-radius: 15px; padding: 20px; margin: 20px 0; border: 1px solid var(--glass-border); }
-        .toc-list { list-style: none; display: grid; grid-template-columns: 1fr; gap: 8px; }
-        .toc-list a { color: var(--accent); text-decoration: none; font-size: 14px; font-weight: 600; }
+    /* ── PROS/CONS ── */
+    .pros-cons-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:20px 0; }
+    .pc-card {
+      background:rgba(0,0,0,0.4); border-radius:14px; padding:18px;
+      border:1px solid var(--glass-b);
+    }
+    .pc-card.pros { border-top:3px solid var(--accent); }
+    .pc-card.cons { border-top:3px solid var(--danger); }
+    .pc-title { font-weight:800; font-size:13px; margin-bottom:10px; color:#fff; }
+    .pc-card ul { list-style:none; font-size:12px; color:var(--muted); }
+    .pc-card ul li { margin-bottom:6px; padding-left:4px; }
 
-        /* GRID */
-        .pros-cons-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin: 25px 0; }
-        .pc-card { background: rgba(0, 0, 0, 0.4); border-radius: 15px; padding: 20px; border: 1px solid var(--glass-border); }
-        .pc-card.pros { border-top: 4px solid var(--accent); }
-        .pc-card.cons { border-top: 4px solid var(--danger); }
+    /* ── SECTION HEADINGS ── */
+    .section-h2 {
+      font-size:18px; color:#fff; margin:28px 0 14px;
+      border-bottom:1px solid var(--glass-b); padding-bottom:8px;
+      font-weight:900;
+    }
+    .section-h3 { font-size:15px; color:var(--accent); margin:20px 0 10px; font-weight:800; }
+    .content-p { color:var(--muted); line-height:1.65; margin-bottom:14px; font-size:13px; }
+    .content-p strong { color:#fff; }
+    .content-ul { list-style:none; font-size:13px; color:var(--muted); margin-bottom:16px; }
+    .content-ul li { margin-bottom:7px; padding-left:18px; position:relative; line-height:1.5; }
+    .content-ul li::before { content:'›'; position:absolute; left:0; color:var(--accent); font-weight:900; }
+    .content-ul li strong { color:#fff; }
 
-        /* FAQ */
-        .faq-item { margin-bottom: 12px; border: 1px solid var(--glass-border); border-radius: 14px; background: rgba(255,255,255,0.02); }
-        .faq-question { padding: 18px; cursor: pointer; font-weight: 700; display: flex; justify-content: space-between; font-size: 15px; }
-        .faq-answer { max-height: 0; overflow: hidden; transition: 0.3s ease; padding: 0 18px; color: var(--text-muted); font-size: 14px; }
-        .faq-item.active .faq-answer { padding: 0 18px 18px 18px; max-height: 500px; }
+    /* ── TOC ── */
+    .toc-card {
+      background:rgba(0,0,0,0.35); border-radius:14px; padding:18px 20px; margin:18px 0;
+      border:1px solid var(--glass-b);
+    }
+    .toc-title { font-weight:800; font-size:13px; margin-bottom:12px; color:#fff; }
+    .toc-list { list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .toc-list a { color:var(--accent); font-size:13px; font-weight:600; transition:opacity .2s; }
+    .toc-list a:hover { opacity:.75; }
 
-        /* MOBILE OVERRIDES */
-        @media (max-width: 900px) {
-            aside { position: fixed; left: 0; top: 0; height: 100%; transform: translateX(-100%); }
-            aside.open { transform: translateX(0); }
-            
-            .toc-list { grid-template-columns: 1fr; }
-            .content-section h1 { font-size: 24px; }
-        }
+    /* ── FAQ ── */
+    .faq-section h2 { font-size:18px; color:#fff; margin:28px 0 14px; font-weight:900; border-bottom:1px solid var(--glass-b); padding-bottom:8px; }
+    .faq-item { margin-bottom:10px; border:1px solid var(--glass-b); border-radius:14px; overflow:hidden; background:var(--glass); }
+    .faq-q {
+      padding:16px 20px; cursor:pointer; font-weight:700; font-size:13px; color:var(--text);
+      display:flex; justify-content:space-between; align-items:center;
+      transition:background .2s; min-height:var(--touch); gap:12px;
+    }
+    .faq-q:hover { background:var(--glass-strong); }
+    .faq-icon { color:var(--accent); font-size:18px; font-weight:900; transition:transform .3s; flex-shrink:0; }
+    .faq-a { max-height:0; overflow:hidden; transition:.32s ease; }
+    .faq-a p { padding:0 20px 16px; font-size:13px; color:var(--muted); line-height:1.65; }
+    .faq-item.open .faq-a { max-height:300px; }
+    .faq-item.open .faq-icon { transform:rotate(45deg); }
 
-        @media (max-width: 500px) {
-            header { padding: 0 12px; }
-            .header-controls { gap: 6px; }
-            .balance-card { padding: 6px 10px; font-size: 12px; }
-            .balance-card .lang-ru, .balance-card .lang-en { display: none; } /* Скрываем слово "Баланс" */
-            .btn-reg { padding: 8px 12px; font-size: 11px; border-radius: 10px; }
-            .lang-selected { padding: 6px 8px; font-size: 11px; }
-            .container { padding: 15px; }
-        }
+    /* ── OVERLAY ── */
+    .sidebar-overlay { display:block; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:999; opacity:0; pointer-events:none; transition:opacity .3s; }
+    body.sidebar-open .sidebar-overlay { opacity:1; pointer-events:auto; }
 
-        /* Visibility control */
-        .lang-en { display: none; }
-        body.en .lang-en { display: block; }
-        body.en .lang-ru { display: none; }
-        span.lang-en { display: none; }
-        body.en span.lang-en { display: inline; }
-        body.en span.lang-ru { display: none; }
-        .nav-item.lang-en { display: none; }
-        body.en .nav-item.lang-en { display: flex; }
-    </style>
+    /* ── LANG SWITCH VISIBILITY ── */
+    .lang-en { display:none; }
+    body.en .lang-en { display:block; }
+    body.en .lang-ru { display:none; }
+    span.lang-en { display:none; }
+    body.en span.lang-en { display:inline; }
+    body.en span.lang-ru { display:none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:1100px) {
+      aside#sidebar { position:fixed; left:-100%; top:0; height:100dvh; box-shadow:6px 0 40px rgba(0,0,0,0.9); }
+      aside#sidebar.open { left:0; }
+      #m-toggle { display:flex; }
+    }
+    @media (max-width:700px) {
+      .pros-cons-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:600px) {
+      :root { --header-h:60px; }
+      header { padding:0 14px; gap:8px; }
+      .balance-card { font-size:11px; padding:7px 11px; }
+      .btn-casino { font-size:10px !important; padding:7px 10px !important; max-width:80px; white-space:normal !important; text-align:center; }
+      .container { padding:16px 14px; }
+    }
+    @media (max-width:375px) {
+      .logo { font-size:19px; }
+      #langLabel { display:none; }
+      .lang-btn { padding:8px 10px; }
+    }
+  </style>
 </head>
-<body class="ru">
+<body>
 
-    <div id="overlay" onclick="toggleMenu()"></div>
+<div id="sidebar-overlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
+<div id="overlay" style="display:none"></div>
 
-    <aside id="sidebar">
-        <div class="logo">MINES<span>NEON</span></div>
-        <a class="nav-item lang-ru" href="index.html">🎮 Демо-игра</a>
-        <a class="nav-item lang-ru" href="signals.html">⚡ Сигналы</a>
-        <a class="nav-item lang-ru" href="promo.html">🎁 ПРОМОКОД</a>
-        <a class="nav-item active lang-ru" href="strategy.html">📚 Стратегии</a>
-        <a class="nav-item lang-ru" href="apk.html">📱 APK</a>
+<!-- SIDEBAR -->
+<aside id="sidebar" role="navigation" aria-label="Главное меню">
+  <div class="logo">
+    <div class="logo-icon">💎</div>
+    MINES<span>NEON</span>
+  </div>
+  <nav>
+    <a class="nav-item" href="index.html">🎮 <span class="lang-ru">Демо + Сигналы</span><span class="lang-en">Demo + Signals</span></a>
+    <a class="nav-item" href="promo.html">🎁 <span class="lang-ru">Промокод</span><span class="lang-en">Promo Code</span></a>
+    <div class="nav-divider"></div>
+    <a class="nav-item active" href="strategy.html">📚 <span class="lang-ru">Стратегии</span><span class="lang-en">Strategies</span></a>
+    <a class="nav-item" href="apkk.html">📱 <span class="lang-ru">MINES APK</span><span class="lang-en">MINES APK</span></a>
+  </nav>
+</aside>
 
-        <a class="nav-item lang-en" href="index.html">🎮 Demo Game</a>
-        <a class="nav-item lang-en" href="signals.html">⚡ Signals</a>
-        <a class="nav-item lang-en" href="promo.html">🎁 PROMO CODE</a>
-        <a class="nav-item active lang-en" href="strategy.html">📚 Strategies</a>
-        <a class="nav-item lang-en" href="apk.html">📱 APK</a>
-    </aside>
+<main>
+  <header>
+    <div id="m-toggle" onclick="toggleSidebar()" role="button" tabindex="0" aria-label="Меню">☰</div>
+    <div class="balance-card" aria-live="polite">
+      <span class="lang-ru">Баланс:</span><span class="lang-en">Balance:</span> <span id="balance">5 000 ₽</span>
+    </div>
+    <div class="header-right">
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-haspopup="listbox" aria-expanded="false" aria-label="Язык">
+          <span id="langFlag">🇷🇺</span>
+          <span id="langLabel">RU</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown" role="listbox">
+          <div class="lang-option active" data-lang="ru" onclick="setLang('ru')" role="option">🇷🇺 Русский</div>
+          <div class="lang-option" data-lang="en" onclick="setLang('en')" role="option">🇬🇧 English</div>
+        </div>
+      </div>
+      <a href="https://lkzq.cc/644450" class="btn-casino">
+        🎰 <span class="lang-ru">РЕГИСТРАЦИЯ</span><span class="lang-en">JOIN</span>
+      </a>
+    </div>
+  </header>
 
-    <main>
-        <header>
-            <div class="header-left">
-                <div id="m-toggle" style="cursor:pointer; font-size: 26px; padding: 5px;" onclick="toggleMenu()">☰</div>
-            </div>
-            
-            <div class="header-controls">
-                <div class="lang-switcher">
-                    <div class="lang-selected" onclick="document.getElementById('langDropdown').classList.toggle('open')">
-                        <span id="langFlag">🇷🇺</span> <span id="langLabel">RU</span>
-                    </div>
-                    <div class="lang-dropdown" id="langDropdown">
-                        <div class="lang-option" onclick="setLang('ru')">🇷🇺 RU</div>
-                        <div class="lang-option" onclick="setLang('en')">🇬🇧 EN</div>
-                    </div>
-                </div>
-                
-                <div class="balance-card">
-                    <span class="lang-ru">Баланс:</span><span class="lang-en">Balance:</span> 
-                    <span id="balance">5000 ₽</span>
-                </div>
-                
-                <a href="https://lkzq.cc/644450" class="btn-reg">
-                    <span class="lang-ru">РЕГИСТРАЦИЯ</span><span class="lang-en">JOIN</span>
-                </a>
-            </div>
-        </header>
+  <div class="container">
 
-        <div class="container">
-            <div class="page active">
-                
-                <h1 class="lang-ru">Библиотека стратегий 2026</h1>
-                <h1 class="lang-en">Strategy Library 2026</h1>
-                
-                <div class="info-card">
-                    <h3 class="lang-ru">🛡️ «Safe Step» (Консервативная)</h3>
-                    <h3 class="lang-en">🛡️ "Safe Step" (Conservative)</h3>
-                    <p class="lang-ru">Оптимально для новичков: ставим на 3 мины, открываем 2 ячейки. Вероятность успеха выше 80%.</p>
-                    <p class="lang-en">Optimal for beginners: set 3 mines, open 2 cells. Success probability is over 80%.</p>
-                </div>
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1 class="lang-ru">📚 Библиотека стратегий 2026</h1>
+      <h1 class="lang-en">📚 Strategy Library 2026</h1>
+    </div>
 
-                <div class="content-section">
-                    
-                    <div class="lang-ru">
-                        <h1>Как выигрывать в Mines: тактики</h1>
-                        <p>Игра Mines требует дисциплины. Каждое открытие плитки увеличивает ваш риск, но и множитель растет в геометрической прогрессии.</p>
+    <!-- INTRO CARD -->
+    <div class="intro-card">
+      <p class="lang-ru">Ни одна стратегия не даёт 100% гарантии. Однако системный подход помогает лучше управлять балансом и вовремя фиксировать прибыль.</p>
+      <p class="lang-en">No strategy guarantees 100% wins. A systematic approach helps you manage your balance and take profit at the right time.</p>
+    </div>
 
-                        <div class="toc-container">
-                            <div style="font-weight: 800; margin-bottom: 12px;">Навигация:</div>
-                            <ul class="toc-list">
-                                <li><a href="#ru-pc">1. Плюсы и минусы</a></li>
-                                <li><a href="#ru-work">2. Механика игры</a></li>
-                                <li><a href="#ru-calc">3. Расчет профита</a></li>
-                                <li><a href="#ru-tips">4. Схемы и советы</a></li>
-                                <li><a href="#faq">5. Ответы на вопросы</a></li>
-                            </ul>
-                        </div>
+    <!-- STRATEGY CARDS -->
+    <div class="strategy-card green">
+      <h3>🛡️ <span class="lang-ru">Консервативная «Safe Step»</span><span class="lang-en">Conservative "Safe Step"</span></h3>
+      <p class="sub lang-ru">Идеально для новичков — долгие сессии без больших потерь.</p>
+      <p class="sub lang-en">Perfect for beginners — long sessions with minimal losses.</p>
+      <ul>
+        <li>• <b><span class="lang-ru">Мин:</span><span class="lang-en">Mines:</span></b> <span class="lang-ru">1 или 3</span><span class="lang-en">1 or 3</span></li>
+        <li>• <b><span class="lang-ru">Действие:</span><span class="lang-en">Action:</span></b> <span class="lang-ru">Открываете только 2–3 звезды.</span><span class="lang-en">Open only 2–3 gems.</span></li>
+        <li>• <b><span class="lang-ru">Суть:</span><span class="lang-en">Goal:</span></b> <span class="lang-ru">Забирайте небольшой стабильный множитель (x1.10–x1.30).</span><span class="lang-en">Take small consistent multipliers (x1.10–x1.30).</span></li>
+      </ul>
+    </div>
 
-                        <h2 id="ru-pc">Преимущества игры</h2>
-                        <div class="pros-cons-grid">
-                            <div class="pc-card pros">
-                                <div class="pc-title">✅ Плюсы</div>
-                                <ul>
-                                    <li>Контроль уровня риска</li>
-                                    <li>Мгновенные выплаты</li>
-                                    <li>Честный алгоритм Provably Fair</li>
-                                </ul>
-                            </div>
-                            <div class="pc-card cons">
-                                <div class="pc-title">❌ Минусы</div>
-                                <ul>
-                                    <li>Азарт может привести к потере банка</li>
-                                    <li>Требует стабильного 4G/Wi-Fi</li>
-                                </ul>
-                            </div>
-                        </div>
+    <div class="strategy-card gold">
+      <h3>⚖️ <span class="lang-ru">Умеренная «Зигзаг»</span><span class="lang-en">Moderate "Zigzag"</span></h3>
+      <p class="sub lang-ru">Баланс между риском и прибылью.</p>
+      <p class="sub lang-en">Balance between risk and reward.</p>
+      <ul>
+        <li>• <b><span class="lang-ru">Мин:</span><span class="lang-en">Mines:</span></b> 3</li>
+        <li>• <b><span class="lang-ru">Действие:</span><span class="lang-en">Action:</span></b> <span class="lang-ru">Открываете ячейки по форме «Z» или «N».</span><span class="lang-en">Open cells in a "Z" or "N" pattern.</span></li>
+        <li>• <b><span class="lang-ru">Суть:</span><span class="lang-en">Goal:</span></b> <span class="lang-ru">Забирать после 5-й звезды.</span><span class="lang-en">Cash out after the 5th gem.</span></li>
+      </ul>
+    </div>
 
-                        <h2 id="ru-work">Механика</h2>
-                        <p>На поле 25 ячеек. Вы сами решаете, сколько будет бомб (от 1 до 24). Оптимально играть с 3-5 минами для баланса коэффициентов.</p>
+    <div class="strategy-card red">
+      <h3>🔥 <span class="lang-ru">Агрессивная «Охотник»</span><span class="lang-en">Aggressive "Hunter"</span></h3>
+      <p class="sub lang-ru">Для тех, кто охотится за крупным кэфом.</p>
+      <p class="sub lang-en">For those chasing big multipliers.</p>
+      <ul>
+        <li>• <b><span class="lang-ru">Мин:</span><span class="lang-en">Mines:</span></b> <span class="lang-ru">5 или 10</span><span class="lang-en">5 or 10</span></li>
+        <li>• <b><span class="lang-ru">Действие:</span><span class="lang-en">Action:</span></b> <span class="lang-ru">Ставите минимум и открываете 5+ звёзд.</span><span class="lang-en">Bet minimum and open 5+ gems.</span></li>
+        <li>• <b><span class="lang-ru">Суть:</span><span class="lang-en">Goal:</span></b> <span class="lang-ru">Используйте только 5–10% банка.</span><span class="lang-en">Use only 5–10% of your bankroll.</span></li>
+      </ul>
+    </div>
 
-                        <h3 id="ru-calc">Расчет выигрыша</h3>
-                        <p>Формула проста: <strong>Сумма × Коэффициент</strong>. Чем больше звезд открыто подряд, тем выше итоговый множитель.</p>
+    <div class="strategy-card blue">
+      <h3>🤖 <span class="lang-ru">«Мартингейл»</span><span class="lang-en">"Martingale"</span></h3>
+      <p class="sub lang-ru">Математический расчёт для восстановления потерь.</p>
+      <p class="sub lang-en">Mathematical loss-recovery system.</p>
+      <ul>
+        <li>• <b><span class="lang-ru">Принцип:</span><span class="lang-en">Principle:</span></b> <span class="lang-ru">При проигрыше удваивайте ставку.</span><span class="lang-en">Double your bet after every loss.</span></li>
+        <li>• <b><span class="lang-ru">Пример:</span><span class="lang-en">Example:</span></b> <span class="lang-ru">100 ₽ → Проигрыш → 200 ₽ → Выигрыш → Возврат к 100 ₽.</span><span class="lang-en">$1 → Loss → $2 → Win → Back to $1.</span></li>
+        <li>• <b><span class="lang-ru">Важно:</span><span class="lang-en">Important:</span></b> <span class="lang-ru">Требует большого запаса баланса.</span><span class="lang-en">Requires a large balance reserve.</span></li>
+      </ul>
+    </div>
 
-                        <h2 id="ru-tips">Проверенные схемы</h2>
-                        <ul>
-                            <li><strong>Угловая тактика:</strong> Открывайте только 4 угловых ячейки при 2 минах.</li>
-                            <li><strong>Зигзаг:</strong> Двигайтесь по диагонали, забирая куш после 3-го шага.</li>
-                        </ul>
-                    </div>
+    <!-- DETAILED SECTION -->
+    <div class="lang-ru">
+      <h2 class="section-h2" id="ru-work">Механика игры</h2>
+      <p class="content-p">На поле 25 ячеек. Вы сами решаете, сколько будет бомб (от 1 до 24). Оптимально играть с 3–5 минами для баланса коэффициентов.</p>
 
-                    <div class="lang-en">
-                        <h1>How to Win at Mines: Tactics</h1>
-                        <p>Mines requires discipline. Every tile you open increases risk, but the multiplier grows exponentially.</p>
+      <div class="toc-card">
+        <div class="toc-title">Навигация:</div>
+        <ul class="toc-list">
+          <li><a href="#ru-pc">1. Плюсы и минусы</a></li>
+          <li><a href="#ru-work">2. Механика игры</a></li>
+          <li><a href="#ru-calc">3. Расчёт профита</a></li>
+          <li><a href="#ru-tips">4. Схемы и советы</a></li>
+          <li><a href="#faq">5. Ответы на вопросы</a></li>
+        </ul>
+      </div>
 
-                        <div class="toc-container">
-                            <div style="font-weight: 800; margin-bottom: 12px;">Contents:</div>
-                            <ul class="toc-list">
-                                <li><a href="#en-pc">1. Pros and Cons</a></li>
-                                <li><a href="#en-work">2. Game Mechanics</a></li>
-                                <li><a href="#en-tips">3. Expert Tips</a></li>
-                                <li><a href="#faq">4. FAQ</a></li>
-                            </ul>
-                        </div>
+      <h2 class="section-h2" id="ru-pc">Преимущества игры</h2>
+      <div class="pros-cons-grid">
+        <div class="pc-card pros">
+          <div class="pc-title">✅ Плюсы</div>
+          <ul>
+            <li>Контроль уровня риска</li>
+            <li>Мгновенные выплаты</li>
+            <li>Честный алгоритм Provably Fair</li>
+          </ul>
+        </div>
+        <div class="pc-card cons">
+          <div class="pc-title">❌ Минусы</div>
+          <ul>
+            <li>Азарт может привести к потере банка</li>
+            <li>Требует стабильного 4G/Wi-Fi</li>
+          </ul>
+        </div>
+      </div>
 
-                        <h2 id="en-pc">Pros of the Game</h2>
-                        <div class="pros-cons-grid">
-                            <div class="pc-card pros">
-                                <div class="pc-title">✅ Pros</div>
-                                <ul>
-                                    <li>Risk level control</li>
-                                    <li>Instant payouts</li>
-                                    <li>Provably Fair algorithm</li>
-                                </ul>
-                            </div>
-                            <div class="pc-card cons">
-                                <div class="pc-title">❌ Cons</div>
-                                <ul>
-                                    <li>High emotional pressure</li>
-                                    <li>Requires stable connection</li>
-                                </ul>
-                            </div>
-                        </div>
+      <h3 class="section-h3" id="ru-calc">Расчёт выигрыша</h3>
+      <p class="content-p">Формула проста: <strong>Сумма × Коэффициент</strong>. Чем больше звёзд открыто подряд, тем выше итоговый множитель.</p>
 
-                        <h2 id="en-tips">Proven Schemes</h2>
-                        <ul>
-                            <li><strong>Corner Strategy:</strong> Open only 4 corner cells with 2 mines active.</li>
-                            <li><strong>The Zigzag:</strong> Move diagonally and cash out after the 3rd successful step.</li>
-                        </ul>
-                    </div>
+      <h2 class="section-h2" id="ru-tips">Проверенные схемы</h2>
+      <ul class="content-ul">
+        <li><strong>Угловая тактика:</strong> Открывайте только 4 угловые ячейки при 2 минах.</li>
+        <li><strong>Зигзаг:</strong> Двигайтесь по диагонали, забирая куш после 3-го шага.</li>
+      </ul>
+    </div>
 
-                    <h2 id="faq">FAQ</h2>
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span class="lang-ru">Какая стратегия лучшая в 2026 году?</span>
-                            <span class="lang-en">What's the best 2026 strategy?</span>
-                            <span style="color:var(--accent)">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p class="lang-ru">Консервативный подход (3 мины / 2-3 звезды) остается самым прибыльным на дистанции.</p>
-                            <p class="lang-en">The conservative approach (3 mines / 2-3 stars) remains the most profitable in the long run.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <span class="lang-ru">Можно ли взломать игру?</span>
-                            <span class="lang-en">Can the game be hacked?</span>
-                            <span style="color:var(--accent)">+</span>
-                        </div>
-                        <div class="faq-answer">
-                            <p class="lang-ru">Нет, игра защищена криптографическим хэшем. Используйте только математические стратегии.</p>
-                            <p class="lang-en">No, the game is protected by cryptographic hashes. Use mathematical strategies only.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div style="height: 40px;"></div> </div>
-    </main>
+    <div class="lang-en">
+      <h2 class="section-h2" id="en-work">Game Mechanics</h2>
+      <p class="content-p">The field has 25 cells. You choose how many mines (1–24). Playing with 3–5 mines offers the best balance of risk and reward.</p>
 
-    <script>
-        const RATE = 100; 
+      <div class="toc-card">
+        <div class="toc-title">Contents:</div>
+        <ul class="toc-list">
+          <li><a href="#en-pc">1. Pros and Cons</a></li>
+          <li><a href="#en-work">2. Game Mechanics</a></li>
+          <li><a href="#en-tips">3. Expert Tips</a></li>
+          <li><a href="#faq">4. FAQ</a></li>
+        </ul>
+      </div>
 
-        function toggleMenu() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('active');
-        }
+      <h2 class="section-h2" id="en-pc">Pros of the Game</h2>
+      <div class="pros-cons-grid">
+        <div class="pc-card pros">
+          <div class="pc-title">✅ Pros</div>
+          <ul>
+            <li>Risk level control</li>
+            <li>Instant payouts</li>
+            <li>Provably Fair algorithm</li>
+          </ul>
+        </div>
+        <div class="pc-card cons">
+          <div class="pc-title">❌ Cons</div>
+          <ul>
+            <li>High emotional pressure</li>
+            <li>Requires stable connection</li>
+          </ul>
+        </div>
+      </div>
 
-        function setLang(lang) {
-            const body = document.body;
-            const langLabel = document.getElementById('langLabel');
-            const langFlag = document.getElementById('langFlag');
-            const dropdown = document.getElementById('langDropdown');
+      <h2 class="section-h2" id="en-tips">Proven Schemes</h2>
+      <ul class="content-ul">
+        <li><strong>Corner Strategy:</strong> Open only 4 corner cells with 2 mines active.</li>
+        <li><strong>The Zigzag:</strong> Move diagonally and cash out after the 3rd successful step.</li>
+      </ul>
+    </div>
 
-            if (lang === 'en') {
-                body.classList.add('en');
-                langLabel.innerText = 'EN';
-                langFlag.innerText = '🇬🇧';
-            } else {
-                body.classList.remove('en');
-                langLabel.innerText = 'RU';
-                langFlag.innerText = '🇷🇺';
-            }
+    <!-- FAQ -->
+    <div class="faq-section">
+      <h2 id="faq">FAQ</h2>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span><span class="lang-ru">Какая стратегия лучшая в 2026 году?</span><span class="lang-en">What's the best 2026 strategy?</span></span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><p><span class="lang-ru">Консервативный подход (3 мины / 2–3 звезды) остаётся самым прибыльным на дистанции.</span><span class="lang-en">The conservative approach (3 mines / 2–3 stars) remains the most profitable in the long run.</span></p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span><span class="lang-ru">Можно ли взломать игру?</span><span class="lang-en">Can the game be hacked?</span></span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><p><span class="lang-ru">Нет, игра защищена криптографическим хэшем. Используйте только математические стратегии.</span><span class="lang-en">No, the game is protected by cryptographic hashes. Use mathematical strategies only.</span></p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+          <span><span class="lang-ru">Как работают ИИ-сигналы?</span><span class="lang-en">How do AI signals work?</span></span>
+          <span class="faq-icon">+</span>
+        </div>
+        <div class="faq-a"><p><span class="lang-ru">Бот анализирует паттерны и подсвечивает ячейки с вероятностью прохода >85%. Это вспомогательный инструмент.</span><span class="lang-en">The bot analyzes patterns and highlights cells with >85% pass probability. This is a supplementary tool.</span></p></div>
+      </div>
+    </div>
 
-            updateCurrencyUI(lang);
-            localStorage.setItem('m_lang', lang);
-            dropdown.classList.remove('open');
-        }
+    <div style="height:40px"></div>
+  </div>
+</main>
 
-        function updateCurrencyUI(lang) {
-            const baseBalance = parseFloat(localStorage.getItem('m_bal')) || 5000;
-            const balEl = document.getElementById('balance');
-            if (lang === 'en') {
-                balEl.innerText = (baseBalance / RATE).toFixed(2) + " $";
-            } else {
-                balEl.innerText = Math.floor(baseBalance) + " ₽";
-            }
-        }
+<script>
+const RATE = 100;
+let currentLang = localStorage.getItem('mn_lang') || localStorage.getItem('m_lang') || 'ru';
 
-        window.onload = () => {
-            const savedLang = localStorage.getItem('m_lang') || 'ru';
-            setLang(savedLang);
-        };
+function updateBalance() {
+  const base = parseFloat(localStorage.getItem('m_bal')) || 5000;
+  const el = document.getElementById('balance');
+  el.innerText = currentLang === 'en' ? '$' + (base / RATE).toFixed(2) : Math.floor(base).toLocaleString('ru-RU') + ' ₽';
+}
 
-        // Закрытие при клике вне
-        window.onclick = (e) => {
-            if (!e.target.closest('.lang-switcher')) {
-                document.getElementById('langDropdown').classList.remove('open');
-            }
-        }
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('mn_lang', lang);
+  localStorage.setItem('m_lang', lang);
+  const body = document.body;
+  if (lang === 'en') body.classList.add('en'); else body.classList.remove('en');
+  document.getElementById('langFlag').textContent = lang === 'ru' ? '🇷🇺' : '🇬🇧';
+  document.getElementById('langLabel').textContent = lang.toUpperCase();
+  document.querySelectorAll('.lang-option').forEach(o => o.classList.toggle('active', o.dataset.lang === lang));
+  closeLangDropdown();
+  updateBalance();
+  document.documentElement.lang = lang;
+}
 
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => q.parentElement.classList.toggle('active'));
-        });
-    </script>
+function toggleLang() {
+  const dd = document.getElementById('langDropdown');
+  const btn = document.getElementById('langBtn');
+  const open = dd.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open);
+}
+function closeLangDropdown() {
+  document.getElementById('langDropdown').classList.remove('open');
+  const btn = document.getElementById('langBtn');
+  if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+}
+document.addEventListener('click', e => {
+  if (!document.getElementById('langSwitcher').contains(e.target)) closeLangDropdown();
+});
+
+function toggleSidebar() {
+  const s = document.getElementById('sidebar');
+  const open = s.classList.toggle('open');
+  document.getElementById('sidebar-overlay').style.opacity = open ? '1' : '0';
+  document.getElementById('sidebar-overlay').style.pointerEvents = open ? 'auto' : 'none';
+  document.body.classList.toggle('sidebar-open', open);
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').style.opacity = '0';
+  document.getElementById('sidebar-overlay').style.pointerEvents = 'none';
+  document.body.classList.remove('sidebar-open');
+}
+
+window.onload = () => {
+  if (!localStorage.getItem('m_bal')) localStorage.setItem('m_bal', 5000);
+  setLang(currentLang);
+};
+</script>
 </body>
 </html>
