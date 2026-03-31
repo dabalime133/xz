@@ -1,244 +1,441 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    
-    <title>Скачать Mines на Андроид и iOS – Установка PWA приложения</title>
-    <meta name="description" content="Инструкция по установке приложения Mines на ваш мобильный телефон. Играйте, получайте сигналы и используйте стратегии в один клик с рабочего стола.">
-    <link rel="canonical" href="https://minespromo.top/apkk.html" />
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=106419573','ym');
+    ym(106419573,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:"dataLayer",referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/106419573" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
 
-    <script type="text/javascript">
-        (function(m,e,t,r,i,k,a){
-            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=106419573', 'ym');
-        ym(106419573, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0,user-scalable=yes,viewport-fit=cover">
+  <title>Скачать Mines на Андроид и iOS – Установка PWA приложения</title>
+  <meta name="description" content="Инструкция по установке приложения Mines на ваш мобильный телефон. Играйте, получайте сигналы и используйте стратегии в один клик с рабочего стола.">
+  <link rel="canonical" href="https://minespromo.top/apkk.html" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-grad: radial-gradient(circle at top right, #1a1c2c, #090a0f);
-            --glass: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --accent: #00ff88;
-            --accent-glow: 0 0 15px rgba(0, 255, 136, 0.5);
-            --text: #ffffff;
-            --text-muted: #a0a0b0;
-        }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--bg-grad); color: var(--text); height: 100vh; overflow: hidden; display: flex; }
-        
-        aside { width: 280px; padding: 25px; display: flex; flex-direction: column; gap: 10px; border-right: 1px solid var(--glass-border); z-index: 1000; transition: 0.4s; background: rgba(0,0,0,0.6); backdrop-filter: blur(15px); }
-        .logo { font-size: 26px; font-weight: 900; text-shadow: var(--accent-glow); margin-bottom: 20px;}
-        .logo span { color: var(--accent); }
+  <style>
+    /* ══════════ DESIGN SYSTEM ══════════ */
+    :root {
+      --bg-grad:     radial-gradient(ellipse 120% 80% at 80% 10%, #141628 0%, #090a0f 60%);
+      --glass:       rgba(255,255,255,0.035);
+      --glass-b:     rgba(255,255,255,0.08);
+      --glass-strong:rgba(255,255,255,0.07);
+      --accent:      #00ff88;
+      --accent-dim:  rgba(0,255,136,0.12);
+      --accent-glow: 0 0 20px rgba(0,255,136,0.55);
+      --gold:        #f5c542;
+      --blue:        #00d4ff;
+      --danger:      #ff3366;
+      --text:        #f0f0f8;
+      --muted:       #8888aa;
+      --sidebar-w:   268px;
+      --header-h:    68px;
+      --radius:      18px;
+      --radius-sm:   12px;
+      --touch:       44px;
+    }
 
-        .nav-item { padding: 14px 18px; border-radius: 12px; cursor: pointer; transition: 0.3s; color: var(--text-muted); font-weight: 600; display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .nav-item:hover, .nav-item.active { background: var(--glass); color: var(--accent); border: 1px solid rgba(0,255,136,0.3); }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; font-family:'Montserrat',sans-serif; -webkit-tap-highlight-color:transparent; }
+    html,body { min-height:100dvh; overflow-x:hidden; }
+    body { background:var(--bg-grad); background-attachment:fixed; color:var(--text); display:flex; -webkit-font-smoothing:antialiased; overflow:hidden; height:100dvh; }
+    a { color:inherit; text-decoration:none; }
 
-        main { flex: 1; display: flex; flex-direction: column; overflow: hidden; position: relative; }
-        header { height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 30px; border-bottom: 1px solid var(--glass-border); }
-        
-        .header-right { display: flex; align-items: center; gap: 10px; }
-        .balance-card { padding: 10px 20px; border-radius: 30px; font-weight: 800; background: rgba(0,255,136,0.1); border: 1px solid var(--accent); color: var(--accent); white-space: nowrap; }
+    body::before {
+      content:''; position:fixed; inset:0; pointer-events:none; z-index:0;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      opacity:.4;
+    }
 
-        /* Переключатель языка */
-        .lang-switcher { position: relative; display: flex; align-items: center; }
-        .lang-btn { 
-            background: rgba(0,255,136,0.1); border: 1px solid var(--accent); 
-            color: var(--accent); border-radius: 20px; padding: 6px 12px; 
-            cursor: pointer; font-weight: 600; font-size: 13px; display: flex; gap: 5px;
-        }
-        .lang-dropdown { 
-            position: absolute; top: 110%; right: 0; background: #1a1c2c; 
-            border: 1px solid var(--glass-border); border-radius: 10px; 
-            display: none; flex-direction: column; z-index: 1001; min-width: 100px;
-        }
-        .lang-dropdown.open { display: flex; }
-        .lang-option { padding: 10px; cursor: pointer; color: #fff; font-size: 13px; border-radius: 10px; }
-        .lang-option:hover { background: var(--glass); }
+    /* ── SIDEBAR ── */
+    aside#sidebar {
+      width:var(--sidebar-w); height:100dvh; position:sticky; top:0; flex-shrink:0;
+      padding:28px 18px; display:flex; flex-direction:column; gap:6px;
+      border-right:1px solid var(--glass-b); z-index:1000;
+      background:rgba(7,8,14,0.75); backdrop-filter:blur(24px); -webkit-backdrop-filter:blur(24px);
+      transition:left .32s cubic-bezier(.4,0,.2,1);
+    }
+    .logo {
+      font-size:22px; font-weight:900; letter-spacing:-1px;
+      text-shadow:var(--accent-glow); margin-bottom:20px; padding:0 4px;
+      display:flex; align-items:center; gap:8px;
+    }
+    .logo span { color:var(--accent); }
+    .logo-icon { width:32px; height:32px; background:var(--accent); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:16px; flex-shrink:0; }
+    .nav-item {
+      padding:12px 16px; border-radius:var(--radius-sm); cursor:pointer;
+      transition:background .22s,color .22s,border-color .22s;
+      color:var(--muted); font-weight:600; font-size:13px; display:flex; align-items:center; gap:11px;
+      min-height:var(--touch); border:1px solid transparent; text-decoration:none;
+    }
+    .nav-item:hover { background:var(--glass); color:var(--text); border-color:var(--glass-b); }
+    .nav-item.active {
+      background:linear-gradient(135deg,rgba(0,255,136,0.12),rgba(0,255,136,0.04));
+      color:var(--accent); border-color:rgba(0,255,136,0.3);
+    }
+    .nav-divider { height:1px; background:var(--glass-b); margin:8px 0; }
 
-        .container { flex: 1; overflow-y: auto; padding: 20px; }
-        .page { display: block; animation: slideUp 0.4s ease forwards; }
-        
-        .step-card { background: var(--glass); border: 1px solid var(--glass-border); border-radius: 15px; padding: 20px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px; }
-        .step-num { min-width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #000; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 20px; }
-        .step-content h3 { color: var(--accent); margin-bottom: 5px; font-size: 16px; }
-        .step-content p { font-size: 14px; color: var(--text-muted); line-height: 1.4; }
+    /* ── MAIN ── */
+    main { flex:1; display:flex; flex-direction:column; min-width:0; height:100dvh; overflow:hidden; position:relative; z-index:1; }
 
-        .btn { background: var(--accent); color: #000; border: none; padding: 16px; border-radius: 14px; font-weight: 800; cursor: pointer; transition: 0.3s; text-align: center; text-decoration: none; display: block; width: 100%; box-shadow: var(--accent-glow); }
+    /* ── HEADER ── */
+    header {
+      height:var(--header-h); display:flex; justify-content:space-between; align-items:center;
+      padding:0 24px; border-bottom:1px solid var(--glass-b); gap:12px; flex-shrink:0;
+      background:rgba(7,8,14,0.85); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px);
+    }
+    #m-toggle {
+      cursor:pointer; font-size:20px; display:none;
+      min-width:var(--touch); min-height:var(--touch); align-items:center; justify-content:center;
+      border-radius:10px; border:1px solid var(--glass-b); background:var(--glass); color:var(--muted);
+      transition:background .2s,border-color .2s;
+    }
+    #m-toggle:hover { background:var(--glass-strong); border-color:rgba(0,255,136,0.3); color:var(--accent); }
+    .balance-card {
+      padding:8px 16px; border-radius:30px; font-weight:800; font-size:13px;
+      background:rgba(0,255,136,0.08); border:1px solid rgba(0,255,136,0.35); color:var(--accent); white-space:nowrap;
+    }
+    .header-right { display:flex; align-items:center; gap:10px; }
 
-        @media (max-width: 900px) {
-            aside { position: fixed; left: -100%; top: 0; height: 100%; }
-            aside.open { left: 0; }
-        }
+    .lang-switcher { position:relative; display:flex; align-items:center; }
+    .lang-btn {
+      display:flex; align-items:center; gap:7px; padding:8px 14px;
+      background:var(--glass); border:1px solid var(--glass-b);
+      border-radius:30px; cursor:pointer; font-weight:700; font-size:12px; color:var(--muted);
+      transition:all .22s; min-height:var(--touch);
+    }
+    .lang-btn:hover,.lang-btn.open { background:var(--accent-dim); border-color:rgba(0,255,136,0.5); color:var(--accent); }
+    #langFlag { font-size:16px; line-height:1; }
+    .lang-dropdown {
+      position:absolute; top:calc(100% + 8px); right:0; min-width:130px;
+      background:#0b0c16; border:1px solid rgba(0,255,136,0.3); border-radius:14px;
+      padding:5px; z-index:5000; display:none; flex-direction:column; gap:2px;
+      box-shadow:0 12px 40px rgba(0,0,0,0.85);
+    }
+    .lang-dropdown.open { display:flex; animation:fadeDown .18s ease; }
+    @keyframes fadeDown { from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)} }
+    .lang-option {
+      display:flex; align-items:center; gap:9px; padding:10px 13px; border-radius:10px;
+      cursor:pointer; font-size:12px; font-weight:700; color:var(--muted);
+      transition:background .18s,color .18s; min-height:var(--touch);
+    }
+    .lang-option:hover,.lang-option.active { background:var(--accent-dim); color:var(--accent); }
 
-        /* Мобильные исправления для кнопки */
-        @media (max-width: 600px) {
-            header { padding: 0 10px; }
-            .balance-card { font-size: 11px; padding: 8px 10px; }
-            
-            .header-right .btn { 
-                font-size: 10px !important; 
-                padding: 5px 8px !important; 
-                max-width: 90px; 
-                line-height: 1.1; 
-                white-space: normal !important; 
-                text-align: center;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .lang-label { display: none; } /* Оставляем только флаг на мобилках */
-        }
-        
-        @media (max-width: 360px) {
-            .balance-card { display: none; }
-        }
-    </style>
+    .btn-casino {
+      padding:9px 18px; background:var(--accent); color:#000; border:none;
+      border-radius:30px; font-weight:900; font-size:12px; cursor:pointer;
+      box-shadow:var(--accent-glow); transition:transform .18s,filter .18s;
+      text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+      white-space:nowrap; min-height:var(--touch);
+    }
+    .btn-casino:hover { transform:scale(1.03); filter:brightness(1.1); }
+
+    /* ── CONTAINER ── */
+    .container { flex:1; overflow-y:auto; padding:26px 24px; }
+
+    /* ── PAGE HEADER ── */
+    .page-header { margin-bottom:24px; }
+    .page-header h1 { font-size:clamp(20px,4vw,26px); font-weight:900; color:var(--accent); text-shadow:var(--accent-glow); margin-bottom:6px; }
+    .page-header p { font-size:13px; color:var(--muted); line-height:1.6; }
+
+    /* ── OS SECTION ── */
+    .os-section { margin-bottom:30px; }
+    .os-title {
+      font-size:16px; font-weight:900; color:#fff; margin-bottom:16px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .os-title span { color:var(--accent); }
+
+    /* ── STEP CARDS ── */
+    .step-card {
+      display:flex; align-items:flex-start; gap:16px; margin-bottom:12px;
+      background:var(--glass); padding:18px 20px; border-radius:var(--radius-sm);
+      border:1px solid var(--glass-b);
+      transition:border-color .22s,box-shadow .22s;
+    }
+    .step-card:hover { border-color:rgba(0,255,136,0.25); box-shadow:0 0 14px rgba(0,255,136,0.07); }
+    .step-num {
+      background:var(--accent); color:#000; width:34px; height:34px; min-width:34px;
+      border-radius:50%; display:flex; align-items:center; justify-content:center;
+      font-weight:900; font-size:15px; box-shadow:0 0 10px rgba(0,255,136,0.4);
+    }
+    .step-content h3 { color:var(--accent); font-size:13px; font-weight:800; margin-bottom:4px; }
+    .step-content p { font-size:13px; color:var(--muted); line-height:1.5; }
+    .step-content p b { color:#fff; }
+
+    /* ── CTA BUTTON ── */
+    .btn-main {
+      background:var(--accent); color:#000; border:none; padding:17px 24px;
+      border-radius:var(--radius-sm); font-weight:900; cursor:pointer; font-size:14px;
+      transition:transform .18s,filter .18s,box-shadow .18s;
+      text-align:center; display:flex; align-items:center; justify-content:center; gap:8px;
+      box-shadow:var(--accent-glow); width:100%; min-height:var(--touch); letter-spacing:.4px;
+      text-decoration:none; margin-top:24px;
+    }
+    .btn-main:hover { transform:scale(1.02); filter:brightness(1.08); }
+
+    /* ── FEATURE CARDS ── */
+    .features-row {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:28px;
+    }
+    .feat-card {
+      background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius-sm);
+      padding:18px 16px; text-align:center;
+      transition:border-color .22s,box-shadow .22s;
+    }
+    .feat-card:hover { border-color:rgba(0,255,136,0.25); box-shadow:0 0 14px rgba(0,255,136,0.07); }
+    .feat-icon { font-size:28px; margin-bottom:8px; }
+    .feat-title { font-size:12px; font-weight:800; color:#fff; margin-bottom:4px; }
+    .feat-desc { font-size:11px; color:var(--muted); line-height:1.4; }
+
+    /* ── OVERLAY ── */
+    .sidebar-overlay { display:block; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:999; opacity:0; pointer-events:none; transition:opacity .3s; }
+    body.sidebar-open .sidebar-overlay { opacity:1; pointer-events:auto; }
+
+    /* ── LANG ── */
+    .lang-en { display:none; }
+    body.en .lang-en { display:block; }
+    body.en .lang-ru { display:none; }
+    span.lang-en { display:none; }
+    body.en span.lang-en { display:inline; }
+    body.en span.lang-ru { display:none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width:1100px) {
+      aside#sidebar { position:fixed; left:-100%; top:0; height:100dvh; box-shadow:6px 0 40px rgba(0,0,0,0.9); }
+      aside#sidebar.open { left:0; }
+      #m-toggle { display:flex; }
+    }
+    @media (max-width:600px) {
+      :root { --header-h:60px; }
+      header { padding:0 14px; gap:8px; }
+      .balance-card { font-size:11px; padding:7px 11px; }
+      .btn-casino { font-size:10px !important; padding:7px 10px !important; max-width:80px; white-space:normal !important; text-align:center; }
+      .container { padding:16px 14px; }
+      .features-row { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:375px) {
+      .logo { font-size:19px; }
+      #langLabel { display:none; }
+      .lang-btn { padding:8px 10px; }
+      .features-row { grid-template-columns:1fr; }
+    }
+  </style>
 </head>
 <body>
 
-    <aside id="sidebar">
-        <div class="logo">MINES<span>NEON</span></div>
-        <a class="nav-item" href="index.html" data-i18n="nav_demo">🎮 Демо-игра</a>
-        <a class="nav-item" href="signals.html" data-i18n="nav_signals">⚡ Сигналы</a>
-        <a class="nav-item" href="promo.html" data-i18n="nav_promo">🎁ПРОМОКОД</a>
-        <a class="nav-item" href="strategy.html" data-i18n="nav_strategy">📚 Стратегии</a>
-        <a class="nav-item active" href="apkk.html" data-i18n="nav_apk">📱 MINES APK</a>
-    </aside>
+<div id="sidebar-overlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
 
-    <main>
-        <header>
-            <div id="m-toggle" style="cursor:pointer; font-size: 24px;" onclick="document.getElementById('sidebar').classList.toggle('open')">☰</div>
-            <div class="balance-card"><span data-i18n="balance_label">Баланс:</span> <span id="balance">5000 ₽</span></div>
-            
-            <div class="header-right">
-                <div class="lang-switcher">
-                    <button class="lang-btn" onclick="toggleLang()">
-                        <span id="langFlag">🇷🇺</span> <span id="langLabel" class="lang-label">RU</span>
-                    </button>
-                    <div class="lang-dropdown" id="langDropdown">
-                        <div class="lang-option" onclick="setLang('ru')">🇷🇺 RU (₽)</div>
-                        <div class="lang-option" onclick="setLang('en')">🇬🇧 EN ($)</div>
-                    </div>
-                </div>
-                <a href="https://lkzq.cc/644450" class="btn" style="width: auto; padding: 10px 15px;" data-i18n="header_cta">РЕГИСТРАЦИЯ</a>
-            </div>
-        </header>
+<!-- SIDEBAR -->
+<aside id="sidebar" role="navigation" aria-label="Главное меню">
+  <div class="logo">
+    <div class="logo-icon">💎</div>
+    MINES<span>NEON</span>
+  </div>
+  <nav>
+    <a class="nav-item" href="index.html">🎮 <span class="lang-ru">Демо + Сигналы</span><span class="lang-en">Demo + Signals</span></a>
+    <a class="nav-item" href="promo.html">🎁 <span class="lang-ru">Промокод</span><span class="lang-en">Promo Code</span></a>
+    <div class="nav-divider"></div>
+    <a class="nav-item" href="strategy.html">📚 <span class="lang-ru">Стратегии</span><span class="lang-en">Strategies</span></a>
+    <a class="nav-item active" href="apkk.html">📱 <span class="lang-ru">MINES APK</span><span class="lang-en">MINES APK</span></a>
+  </nav>
+</aside>
 
-        <div class="container">
-            <div class="page">
-                <h1 style="margin-bottom: 10px;" data-i18n="install_title">Установка приложения</h1>
-                <p style="color: var(--text-muted); margin-bottom: 30px;" data-i18n="install_desc">Установите наш веб-сервис как приложение для мгновенного доступа к сигналам.</p>
-
-                <h2 style="margin-bottom: 15px; font-size: 20px;" data-i18n="android_title">🤖 Для Android</h2>
-                <div class="step-card">
-                    <div class="step-num">1</div>
-                    <div class="step-content">
-                        <h3 data-i18n="android_step1_h">Открыть настройки Chrome</h3>
-                        <p data-i18n="android_step1_p">Нажмите на иконку трёх точек (⋮) в верхнем углу браузера.</p>
-                    </div>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">2</div>
-                    <div class="step-content">
-                        <h3 data-i18n="android_step2_h">Добавить на экран</h3>
-                        <p data-i18n="android_step2_p">Выберите пункт «Установить приложение» или «Добавить на гл. экран».</p>
-                    </div>
-                </div>
-
-                <h2 style="margin: 30px 0 15px; font-size: 20px;" data-i18n="ios_title">🍏 Для iOS (iPhone)</h2>
-                <div class="step-card">
-                    <div class="step-num">1</div>
-                    <div class="step-content">
-                        <h3 data-i18n="ios_step1_h">Нажать «Поделиться»</h3>
-                        <p data-i18n="ios_step1_p">В браузере Safari нажмите на центральную иконку со стрелкой вверх.</p>
-                    </div>
-                </div>
-                <div class="step-card">
-                    <div class="step-num">2</div>
-                    <div class="step-content">
-                        <h3 data-i18n="ios_step2_h">Экран «Домой»</h3>
-                        <p data-i18n="ios_step2_p">Прокрутите список функций и нажмите кнопку «На экран Домой».</p>
-                    </div>
-                </div>
-
-                <a href="https://lkzq.cc/644450" class="btn" style="margin-top: 20px;" data-i18n="download_btn">СКАЧАТЬ ОРИГИНАЛЬНЫЙ APK</a>
-            </div>
+<main>
+  <header>
+    <div id="m-toggle" onclick="toggleSidebar()" role="button" tabindex="0" aria-label="Меню">☰</div>
+    <div class="balance-card" aria-live="polite">
+      <span class="lang-ru">Баланс:</span><span class="lang-en">Balance:</span> <span id="balance">5 000 ₽</span>
+    </div>
+    <div class="header-right">
+      <div class="lang-switcher" id="langSwitcher">
+        <button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-haspopup="listbox" aria-expanded="false" aria-label="Язык">
+          <span id="langFlag">🇷🇺</span>
+          <span id="langLabel">RU</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown" role="listbox">
+          <div class="lang-option active" data-lang="ru" onclick="setLang('ru')" role="option">🇷🇺 Русский</div>
+          <div class="lang-option" data-lang="en" onclick="setLang('en')" role="option">🇬🇧 English</div>
         </div>
-    </main>
+      </div>
+      <a href="https://lkzq.cc/644450" class="btn-casino">
+        🎰 <span class="lang-ru">РЕГИСТРАЦИЯ</span><span class="lang-en">REGISTER</span>
+      </a>
+    </div>
+  </header>
 
-    <script>
-        const EXCHANGE_RATE = 100; // 100р = 1$
+  <div class="container">
 
-        const translations = {
-            ru: {
-                nav_demo: "🎮 Демо-игра", nav_signals: "⚡ Сигналы", nav_promo: "🎁ПРОМОКОД", nav_strategy: "📚 Стратегии", nav_apk: "📱 MINES APK",
-                balance_label: "Баланс:", header_cta: "РЕГИСТРАЦИЯ", install_title: "Установка приложения", install_desc: "Установите наш веб-сервис как приложение для мгновенного доступа к сигналам.",
-                android_title: "🤖 Для Android", android_step1_h: "Открыть настройки Chrome", android_step1_p: "Нажмите на иконку трёх точек (⋮) в верхнем углу браузера.",
-                android_step2_h: "Добавить на экран", android_step2_p: "Выберите пункт «Установить приложение» или «Добавить на гл. экран».",
-                ios_title: "🍏 Для iOS (iPhone)", ios_step1_h: "Нажать «Поделиться»", ios_step1_p: "В браузере Safari нажмите на центральную иконку со стрелкой вверх.",
-                ios_step2_h: "Экран «Домой»", ios_step2_p: "Прокрутите список функций и нажмите кнопку «На экран Домой».",
-                download_btn: "СКАЧАТЬ ОРИГИНАЛЬНЫЙ APK"
-            },
-            en: {
-                nav_demo: "🎮 Demo Game", nav_signals: "⚡ Signals", nav_promo: "🎁PROMOCODE", nav_strategy: "📚 Strategies", nav_apk: "📱 MINES APK",
-                balance_label: "Balance:", header_cta: "REGISTRATION", install_title: "App Installation", install_desc: "Install our web service as an app for instant access to signals.",
-                android_title: "🤖 For Android", android_step1_h: "Open Chrome Settings", android_step1_p: "Tap the three dots icon (⋮) in the top corner of the browser.",
-                android_step2_h: "Add to Home Screen", android_step2_p: "Select 'Install app' or 'Add to Home screen'.",
-                ios_title: "🍏 For iOS (iPhone)", ios_step1_h: "Tap 'Share'", ios_step1_p: "In Safari browser, tap the center icon with the arrow pointing up.",
-                ios_step2_h: "Home Screen", ios_step2_p: "Scroll down and tap 'Add to Home Screen' button.",
-                download_btn: "DOWNLOAD ORIGINAL APK"
-            }
-        };
+    <!-- PAGE HEADER -->
+    <div class="page-header">
+      <h1 class="lang-ru">📱 Установка приложения</h1>
+      <h1 class="lang-en">📱 App Installation</h1>
+      <p class="lang-ru">Установите наш веб-сервис как PWA-приложение на телефон для мгновенного доступа к сигналам и демо-игре.</p>
+      <p class="lang-en">Install our web service as a PWA app on your phone for instant access to signals and demo gameplay.</p>
+    </div>
 
-        function toggleLang() {
-            document.getElementById('langDropdown').classList.toggle('open');
-        }
+    <!-- FEATURE HIGHLIGHTS -->
+    <div class="features-row">
+      <div class="feat-card">
+        <div class="feat-icon">⚡</div>
+        <div class="feat-title lang-ru">Мгновенный запуск</div>
+        <div class="feat-title lang-en">Instant Launch</div>
+        <div class="feat-desc lang-ru">Открывается как нативное приложение</div>
+        <div class="feat-desc lang-en">Opens like a native app</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔔</div>
+        <div class="feat-title lang-ru">Уведомления</div>
+        <div class="feat-title lang-en">Notifications</div>
+        <div class="feat-desc lang-ru">Сигналы прямо на экран</div>
+        <div class="feat-desc lang-en">Signals to your screen</div>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔒</div>
+        <div class="feat-title lang-ru">Безопасно</div>
+        <div class="feat-title lang-en">Secure</div>
+        <div class="feat-desc lang-ru">Без лишних разрешений</div>
+        <div class="feat-desc lang-en">No extra permissions</div>
+      </div>
+    </div>
 
-        function setLang(lang) {
-            // 1. Перевод текстов
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (translations[lang][key]) el.innerText = translations[lang][key];
-            });
+    <!-- ANDROID SECTION -->
+    <div class="os-section">
+      <div class="os-title">🤖 <span class="lang-ru">Для Android</span><span class="lang-en">For Android</span></div>
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3 class="lang-ru">Открыть настройки Chrome</h3>
+          <h3 class="lang-en">Open Chrome Settings</h3>
+          <p class="lang-ru">Нажмите на иконку трёх точек (⋮) в верхнем углу браузера Chrome.</p>
+          <p class="lang-en">Tap the three dots icon (⋮) in the top corner of Chrome browser.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3 class="lang-ru">Добавить на экран</h3>
+          <h3 class="lang-en">Add to Home Screen</h3>
+          <p class="lang-ru">Выберите пункт <b>«Установить приложение»</b> или <b>«Добавить на гл. экран»</b>.</p>
+          <p class="lang-en">Select <b>"Install app"</b> or <b>"Add to Home screen"</b>.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3 class="lang-ru">Подтвердить</h3>
+          <h3 class="lang-en">Confirm</h3>
+          <p class="lang-ru">Нажмите <b>«Установить»</b> в появившемся диалоговом окне.</p>
+          <p class="lang-en">Tap <b>"Install"</b> in the confirmation dialog that appears.</p>
+        </div>
+      </div>
+    </div>
 
-            // 2. Смена валюты
-            const baseBalance = parseFloat(localStorage.getItem('m_bal')) || 5000;
-            const balanceEl = document.getElementById('balance');
-            
-            if (lang === 'en') {
-                const inUSD = (baseBalance / EXCHANGE_RATE).toFixed(2);
-                balanceEl.innerText = inUSD + " $";
-            } else {
-                balanceEl.innerText = Math.floor(baseBalance) + " ₽";
-            }
+    <!-- IOS SECTION -->
+    <div class="os-section">
+      <div class="os-title">🍏 <span class="lang-ru">Для iOS (iPhone)</span><span class="lang-en">For iOS (iPhone)</span></div>
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3 class="lang-ru">Открыть в Safari</h3>
+          <h3 class="lang-en">Open in Safari</h3>
+          <p class="lang-ru">Убедитесь, что сайт открыт в браузере <b>Safari</b> — не Chrome.</p>
+          <p class="lang-en">Make sure the site is open in <b>Safari</b> browser — not Chrome.</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3 class="lang-ru">Нажать «Поделиться»</h3>
+          <h3 class="lang-en">Tap "Share"</h3>
+          <p class="lang-ru">Нажмите центральную кнопку <b>«Поделиться»</b> (квадрат со стрелкой вверх ↑).</p>
+          <p class="lang-en">Tap the <b>Share</b> button (square with an arrow pointing up ↑).</p>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3 class="lang-ru">На экран «Домой»</h3>
+          <h3 class="lang-en">Add to Home Screen</h3>
+          <p class="lang-ru">Прокрутите меню и выберите <b>«На экран "Домой"»</b>. Нажмите «Добавить».</p>
+          <p class="lang-en">Scroll down and select <b>"Add to Home Screen"</b>. Tap "Add".</p>
+        </div>
+      </div>
+    </div>
 
-            // 3. Обновление кнопки выбора
-            document.getElementById('langLabel').innerText = lang.toUpperCase();
-            document.getElementById('langFlag').innerText = lang === 'ru' ? '🇷🇺' : '🇬🇧';
-            document.getElementById('langDropdown').classList.remove('open');
-            
-            localStorage.setItem('selected_lang', lang);
-        }
+    <!-- CTA -->
+    <a href="https://lkzq.cc/644450" class="btn-main">
+      <span style="font-size:18px">📥</span>
+      <span class="lang-ru">СКАЧАТЬ ОРИГИНАЛЬНЫЙ APK</span>
+      <span class="lang-en">DOWNLOAD ORIGINAL APK</span>
+    </a>
 
-        // Закрытие дропдауна при клике мимо
-        window.onclick = function(e) {
-            if (!e.target.closest('.lang-switcher')) {
-                document.getElementById('langDropdown').classList.remove('open');
-            }
-        }
+    <div style="height:40px"></div>
+  </div>
+</main>
 
-        window.onload = () => {
-            const savedLang = localStorage.getItem('selected_lang') || 'ru';
-            setLang(savedLang);
-        };
-    </script>
+<script>
+const RATE = 100;
+let currentLang = localStorage.getItem('mn_lang') || localStorage.getItem('selected_lang') || localStorage.getItem('m_lang') || 'ru';
+
+function updateBalance() {
+  const base = parseFloat(localStorage.getItem('m_bal')) || 5000;
+  const el = document.getElementById('balance');
+  el.innerText = currentLang === 'en' ? '$' + (base / RATE).toFixed(2) : Math.floor(base).toLocaleString('ru-RU') + ' ₽';
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('mn_lang', lang);
+  localStorage.setItem('m_lang', lang);
+  localStorage.setItem('selected_lang', lang);
+  const body = document.body;
+  if (lang === 'en') body.classList.add('en'); else body.classList.remove('en');
+  document.getElementById('langFlag').textContent = lang === 'ru' ? '🇷🇺' : '🇬🇧';
+  document.getElementById('langLabel').textContent = lang.toUpperCase();
+  document.querySelectorAll('.lang-option').forEach(o => o.classList.toggle('active', o.dataset.lang === lang));
+  closeLangDropdown();
+  updateBalance();
+  document.documentElement.lang = lang;
+}
+
+function toggleLang() {
+  const dd = document.getElementById('langDropdown');
+  const btn = document.getElementById('langBtn');
+  const open = dd.classList.toggle('open');
+  btn.classList.toggle('open', open);
+  btn.setAttribute('aria-expanded', open);
+}
+function closeLangDropdown() {
+  document.getElementById('langDropdown').classList.remove('open');
+  const btn = document.getElementById('langBtn');
+  if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+}
+document.addEventListener('click', e => {
+  if (!document.getElementById('langSwitcher').contains(e.target)) closeLangDropdown();
+});
+
+function toggleSidebar() {
+  const s = document.getElementById('sidebar');
+  const open = s.classList.toggle('open');
+  document.getElementById('sidebar-overlay').style.opacity = open ? '1' : '0';
+  document.getElementById('sidebar-overlay').style.pointerEvents = open ? 'auto' : 'none';
+  document.body.classList.toggle('sidebar-open', open);
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').style.opacity = '0';
+  document.getElementById('sidebar-overlay').style.pointerEvents = 'none';
+  document.body.classList.remove('sidebar-open');
+}
+
+window.onload = () => {
+  if (!localStorage.getItem('m_bal')) localStorage.setItem('m_bal', 5000);
+  setLang(currentLang);
+};
+</script>
 </body>
 </html>
