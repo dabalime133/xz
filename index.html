@@ -131,7 +131,7 @@
     }
     .header-right { display:flex; align-items:center; gap:10px; }
 
-    /* ── LANG SWITCHER ── */
+    /* ── LANG SWITCHER & HEADER BTNS ── */
     .lang-switcher { position:relative; display:flex; align-items:center; }
     .lang-btn {
       display:flex; align-items:center; gap:7px; padding:8px 14px;
@@ -173,6 +173,37 @@
     }
     .btn-casino:hover { transform:translateY(-1px) scale(1.02); filter:brightness(1.1); box-shadow:0 0 30px rgba(0,255,136,0.7); }
     .btn-casino:active { transform:scale(0.97); }
+
+    /* ── MORE GAMES MOBILE TOAST ── */
+    .mobile-more-toast {
+      position: fixed;
+      top: calc(var(--header-h) + 14px);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 800;
+      display: none; /* Controlled via JS and media query */
+      align-items: center;
+      gap: 12px;
+      padding: 8px 12px 8px 16px;
+      border-radius: 30px;
+      border: 1px solid rgba(0,255,136,0.3);
+      background: rgba(7,8,14,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6), 0 0 14px rgba(0,255,136,0.15);
+      animation: slideDownToast 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes slideDownToast { from { opacity: 0; transform: translate(-50%, -20px); } to { opacity: 1; transform: translate(-50%, 0); } }
+    .mmt-content { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+    .mmt-icon { font-size: 22px; line-height: 1; }
+    .mmt-text { display: flex; flex-direction: column; line-height: 1.3; }
+    .mmt-text strong { font-size: 12px; color: var(--accent); font-weight: 800; }
+    .mmt-text span { font-size: 10px; color: var(--muted); }
+    .mmt-close {
+      font-size: 22px; color: var(--muted); cursor: pointer;
+      padding: 0 4px; line-height: 1; transition: color 0.2s;
+    }
+    .mmt-close:hover { color: #fff; }
 
     /* ── CONTENT ── */
     .container { flex:1; padding:22px; display:flex; flex-direction:column; }
@@ -445,7 +476,12 @@
       .sidebar-overlay { display:block; position:fixed; inset:0; background:rgba(0,0,0,0.6); z-index:999; opacity:0; pointer-events:none; transition:opacity .3s; backdrop-filter:blur(2px); }
       body.sidebar-open .sidebar-overlay { opacity:1; pointer-events:auto; }
     }
+    @media (min-width:901px) {
+      .mobile-more-toast { display:none !important; }
+    }
     @media (max-width:900px) {
+      .header-more-btn { display:none !important; }
+      .mobile-more-toast { display:flex; }
       .game-wrapper { grid-template-columns:1fr 1fr; gap:12px; }
       .controls-panel { grid-column:1 / -1; flex-direction:row !important; align-items:stretch; gap:14px; }
       .controls-panel .ctrl-inputs { display:flex; gap:12px; flex:2; }
@@ -482,6 +518,17 @@
 
 <div id="sidebar-overlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
 <div id="toast-container" role="alert" aria-live="polite"></div>
+
+<div id="mobile-more-toast" class="mobile-more-toast glass">
+  <div class="mmt-content" onclick="navToOther()">
+    <span class="mmt-icon">🎮</span>
+    <div class="mmt-text">
+      <strong data-i18n="header_more_games">Больше игр</strong>
+      <span data-i18n="mmt_sub">Попробуй новинки!</span>
+    </div>
+  </div>
+  <span class="mmt-close" onclick="closeMobileMore()">×</span>
+</div>
 
 <div id="big-win-overlay" class="fullscreen-overlay" role="dialog" aria-modal="true" aria-labelledby="bw-title">
   <div class="overlay-card">
@@ -537,6 +584,12 @@
       <span data-i18n="balance_label">Баланс:</span> <span id="balance">5 000 ₽</span>
     </div>
     <div class="header-right">
+      
+      <button class="lang-btn header-more-btn" onclick="navToOther()" aria-label="Больше игр">
+        <span style="font-size:15px; line-height:1">🎮</span>
+        <span data-i18n="header_more_games">Больше игр</span>
+      </button>
+
       <div class="lang-switcher" id="langSwitcher">
       <button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-haspopup="listbox" aria-expanded="false" aria-label="Выбрать язык">
   <img id="langFlag" src="https://flagcdn.com/w20/ru.png" srcset="https://flagcdn.com/w40/ru.png 2x" width="20" alt="RU">
@@ -874,7 +927,7 @@
 const i18n = {
   ru: {
     nav_game:'🎮 Демо + Сигналы', nav_promo:'🎁 Промокод', nav_strategy:'📚 Стратегии', nav_faq:'❓ FAQ', nav_apk:'📱 MINES APK',
-    nav_other:'🎲 Другие Игры',
+    nav_other:'🎲 Другие Игры', header_more_games:'Больше игр', mmt_sub:'Попробуй новинки!',
     balance_label:'Баланс:', header_cta:'🎰 ПЕРЕЙТИ В КАЗИНО',
     game_h1:'Mines демо-игра с ИИ-сигналами онлайн бесплатно',
     label_bet:'Ставка (DEMO)', label_mines:'Количество мин',
@@ -947,7 +1000,7 @@ const i18n = {
   },
   en: {
     nav_game:'🎮 Demo + Signals', nav_promo:'🎁 Promo Code', nav_strategy:'📚 Strategies', nav_faq:'❓ FAQ', nav_apk:'📱 MINES APK',
-    nav_other:'🎲 Other Games',
+    nav_other:'🎲 Other Games', header_more_games:'More Games', mmt_sub:'Try new releases!',
     balance_label:'Balance:', header_cta:'🎰 GO TO CASINO',
     game_h1:'Mines demo game with AI signals — play free online',
     label_bet:'Bet (DEMO)', label_mines:'Number of mines',
@@ -1121,6 +1174,11 @@ let isPlaying = false, sharedMines = [], signalStars = [], pendingSignalBoard = 
 let opened = 0, curBet = 0, demoPlays = 0;
 let promoTimeout;
 
+function closeMobileMore() {
+  const toast = document.getElementById('mobile-more-toast');
+  if (toast) toast.style.display = 'none';
+}
+
 function closePromo() { document.getElementById('dynamic-promo').style.display = 'none'; }
 function closeBigWin() { document.getElementById('big-win-overlay').style.display = 'none'; }
 function closeSuggest() { document.getElementById('suggest-overlay').style.display = 'none'; }
@@ -1157,6 +1215,15 @@ function updateUI() {
   document.getElementById('balance').innerText = formatCurrency(balance);
   document.getElementById('sigLock').style.display = (isVip || signalsLeft > 0) ? 'none' : 'flex';
   localStorage.setItem('m_bal', balance);
+}
+
+function navToOther() {
+  // Ищем пункт меню "Другие Игры" по атрибуту data-i18n
+  const otherItem = Array.from(document.querySelectorAll('.nav-item')).find(el => el.getAttribute('data-i18n') === 'nav_other');
+  if(otherItem) {
+    nav('other', otherItem);
+  }
+  closeMobileMore();
 }
 
 function nav(id, el) {
