@@ -977,8 +977,10 @@ function applyTranslations() {
 
 function setLang(lang, isInit = false) {
   if (lang === currentLang && !isInit) { closeLangDropdown(); return; }
+  
   const betInp = document.getElementById('betInput');
   let betVal = parseFloat(betInp.value) || 0;
+  
   if (lang === 'en') {
     if (currentLang === 'ru' || isInit) betInp.value = (betVal / 100).toFixed(2);
     betInp.step = "0.1"; betInp.min = "0.1";
@@ -986,19 +988,30 @@ function setLang(lang, isInit = false) {
     if (currentLang === 'en' && !isInit) betInp.value = Math.floor(betVal * 100);
     betInp.step = "10"; betInp.min = "10";
   }
+  
   currentLang = lang;
   localStorage.setItem('mn_lang', lang);
-  document.getElementById('langFlag').textContent = lang === 'ru' ? '🇷🇺' : '🇬🇧';
+
+  // --- ИСПРАВЛЕНИЕ ТУТ ---
+  const flagImg = document.getElementById('langFlag');
+  if (lang === 'ru') {
+    flagImg.src = 'https://flagcdn.com/w20/ru.png';
+  } else {
+    flagImg.src = 'https://flagcdn.com/w20/us.png';
+  }
+  // -----------------------
+
   document.getElementById('langLabel').textContent = lang.toUpperCase();
+  
   document.querySelectorAll('.lang-option').forEach(o => {
     o.classList.toggle('active', o.dataset.lang === lang);
     o.setAttribute('aria-selected', o.dataset.lang === lang);
   });
+  
   applyTranslations();
   updateUI();
   closeLangDropdown();
 }
-
 function toggleLang() {
   const dd = document.getElementById('langDropdown');
   const btn = document.getElementById('langBtn');
