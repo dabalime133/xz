@@ -157,7 +157,12 @@
       transition:background .18s,color .18s; min-height:var(--touch);
     }
     .lang-option:hover,.lang-option.active { background:var(--accent-dim); color:var(--accent); }
-
+#langFlag {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+  border-radius: 2px; /* По желанию: чуть скруглить углы флага */
+}
     /* ── CTA BUTTON ── */
     .btn-casino {
       padding:9px 18px; background:var(--accent); color:#000; border:none;
@@ -519,13 +524,17 @@
     </div>
     <div class="header-right">
       <div class="lang-switcher" id="langSwitcher">
-        <button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-haspopup="listbox" aria-expanded="false" aria-label="Выбрать язык">
-          <span id="langFlag">🇷🇺</span>
-          <span id="langLabel">RU</span>
-        </button>
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-haspopup="listbox" aria-expanded="false" aria-label="Выбрать язык">
+  <img id="langFlag" src="https://flagcdn.com/w20/ru.png" srcset="https://flagcdn.com/w40/ru.png 2x" width="20" alt="RU">
+  <span id="langLabel">RU</span>
+</button>
+        
         <div class="lang-dropdown" id="langDropdown" role="listbox">
           <div class="lang-option active" data-lang="ru" onclick="setLang('ru')" role="option" aria-selected="true">🇷🇺 Русский</div>
-          <div class="lang-option" data-lang="en" onclick="setLang('en')" role="option" aria-selected="false">🇬🇧 English</div>
+       <div class="lang-option" onclick="changeLang('en')">
+  <img src="https://flagcdn.com/w20/us.png" width="20" alt="EN">
+  <span>EN</span>
+</div>
         </div>
       </div>
       <a href="https://lkzq.cc/644450" class="btn-casino btn-neon-pulse" data-i18n="header_cta">🎰 ПЕРЕЙТИ В КАЗИНО</a>
