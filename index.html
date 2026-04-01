@@ -283,10 +283,6 @@
       border:1px solid var(--glass-b);
       box-shadow:0 4px 20px rgba(0,0,0,0.4),inset 0 1px 0 rgba(255,255,255,0.06);
     }
-    .info-card.border-green { border-left:4px solid var(--accent) !important; }
-    .info-card.border-yellow { border-left:4px solid var(--gold) !important; }
-    .info-card.border-red { border-left:4px solid var(--danger) !important; }
-    .info-card.border-blue { border-left:4px solid var(--blue) !important; }
     .info-card h3 { color:#fff; margin-bottom:10px; font-size:16px; display:flex; align-items:center; gap:10px; font-weight:800; }
     .info-card p { font-size:14px; color:var(--muted); line-height:1.65; }
     .info-card b { color:#fff; }
@@ -307,10 +303,10 @@
 
     /* ── STEP CARDS ── */
     .step-card {
-      display:flex; align-items:center; gap:16px; margin-bottom:12px;
-      background:var(--glass); padding:16px 18px; border-radius:var(--radius-sm);
+      display:flex; align-items:flex-start; gap:16px; margin-bottom:12px;
+      background:var(--glass); padding:18px 20px; border-radius:var(--radius-sm);
       border:1px solid var(--glass-b);
-      transition:border-color .2s,box-shadow .2s;
+      transition:border-color .22s,box-shadow .22s;
     }
     .step-card:hover { border-color:rgba(0,255,136,0.25); box-shadow:0 0 12px rgba(0,255,136,0.08); }
     .step-num {
@@ -396,6 +392,36 @@
     .strategy-card ul li { margin-bottom:5px; color:var(--muted); padding-left:4px; }
     .strategy-card ul li b { color:var(--text); }
 
+    /* ── FEATURE CARDS (APK) ── */
+    .features-row {
+      display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:28px;
+    }
+    .feat-card {
+      background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius-sm);
+      padding:18px 16px; text-align:center;
+      transition:border-color .22s,box-shadow .22s;
+    }
+    .feat-card:hover { border-color:rgba(0,255,136,0.25); box-shadow:0 0 14px rgba(0,255,136,0.07); }
+    .feat-icon { font-size:28px; margin-bottom:8px; }
+    .feat-title { font-size:12px; font-weight:800; color:#fff; margin-bottom:4px; }
+    .feat-desc { font-size:11px; color:var(--muted); line-height:1.4; }
+    
+    .os-section { margin-bottom:30px; }
+    .os-title {
+      font-size:16px; font-weight:900; color:#fff; margin-bottom:16px;
+      display:flex; align-items:center; gap:10px;
+    }
+    
+    .btn-main {
+      background:var(--accent); color:#000; border:none; padding:17px 24px;
+      border-radius:var(--radius-sm); font-weight:900; cursor:pointer; font-size:14px;
+      transition:transform .18s,filter .18s,box-shadow .18s;
+      text-align:center; display:flex; align-items:center; justify-content:center; gap:8px;
+      box-shadow:var(--accent-glow); width:100%; min-height:var(--touch); letter-spacing:.4px;
+      text-decoration:none; margin-top:24px;
+    }
+    .btn-main:hover { transform:scale(1.02); filter:brightness(1.08); }
+
     /* ══ RESPONSIVE ══ */
     @media (max-width:1100px) {
       aside#sidebar { position:fixed; left:-100%; top:0; z-index:1000; box-shadow:6px 0 40px rgba(0,0,0,0.9); height:100dvh; }
@@ -423,12 +449,14 @@
       .btn-casino { font-size:10px !important; padding:7px 10px !important; max-width:80px; white-space:normal !important; text-align:center; }
       .container { padding:14px; }
       .overlay-card { padding:28px 18px; }
+      .features-row { grid-template-columns:1fr 1fr; }
     }
     @media (max-width:375px) {
       .cell { font-size:16px; }
       .logo { font-size:19px; }
       #langLabel { display:none; }
       .lang-btn { padding:8px 10px; min-width:44px; }
+      .features-row { grid-template-columns:1fr; }
     }
   </style>
 </head>
@@ -437,7 +465,6 @@
 <div id="sidebar-overlay" class="sidebar-overlay" onclick="closeSidebar()"></div>
 <div id="toast-container" role="alert" aria-live="polite"></div>
 
-<!-- BIG WIN OVERLAY -->
 <div id="big-win-overlay" class="fullscreen-overlay" role="dialog" aria-modal="true" aria-labelledby="bw-title">
   <div class="overlay-card">
     <span class="overlay-close" onclick="closeBigWin()" aria-label="Закрыть">×</span>
@@ -450,7 +477,6 @@
   </div>
 </div>
 
-<!-- SUGGEST OVERLAY -->
 <div id="suggest-overlay" class="fullscreen-overlay" role="dialog" aria-modal="true">
   <div class="overlay-card">
     <span class="overlay-close" onclick="closeSuggest()" aria-label="Закрыть">×</span>
@@ -461,7 +487,6 @@
   </div>
 </div>
 
-<!-- FLOATING PROMO -->
 <div id="dynamic-promo" class="floating-promo glass" role="complementary">
   <div style="display:flex;justify-content:space-between;align-items:center">
     <span style="color:var(--accent);font-weight:800;font-size:12px" data-i18n="promo_title">🎰 Время реальной игры!</span>
@@ -471,7 +496,6 @@
   <a href="https://lkzq.cc/644450" class="btn btn-neon-pulse" style="padding:12px;font-size:12px" data-i18n="promo_cta">ЗАБРАТЬ БОНУС 500%</a>
 </div>
 
-<!-- SIDEBAR -->
 <aside id="sidebar" role="navigation" aria-label="Главное меню">
   <div class="logo" aria-label="MinesNeon">
     <div class="logo-icon">💎</div>
@@ -483,7 +507,7 @@
     <div class="nav-divider"></div>
     <div class="nav-item" onclick="nav('strategy',this)" role="button" tabindex="0" data-i18n="nav_strategy">📚 Стратегии</div>
     <div class="nav-item" onclick="nav('faq',this)" role="button" tabindex="0" data-i18n="nav_faq">❓ FAQ</div>
-    <div class="nav-item" onclick="window.location.href='apkk.html'" role="button" tabindex="0" data-i18n="nav_apk">📱 MINES APK</div>
+    <div class="nav-item" onclick="nav('apk',this)" role="button" tabindex="0" data-i18n="nav_apk">📱 MINES APK</div>
   </nav>
 </aside>
 
@@ -510,7 +534,6 @@
 
   <div class="container" role="main">
 
-    <!-- GAME PAGE -->
     <section id="p-game" class="page active" aria-labelledby="game-heading">
       <h1 id="game-heading" style="position:absolute;left:-9999px" data-i18n="game_h1">Mines демо-игра с ИИ-сигналами онлайн бесплатно</h1>
       <div class="game-wrapper">
@@ -574,7 +597,6 @@
       </div>
     </section>
 
-    <!-- STRATEGY PAGE -->
     <section id="p-strategy" class="page" aria-labelledby="strategy-heading">
       <div class="back-btn" onclick="nav('game',document.querySelector('.nav-item'))" role="button" tabindex="0">← <span data-i18n="back">Вернуться к игре</span></div>
       <h1 id="strategy-heading" style="font-size:22px;margin-bottom:6px;color:var(--accent);text-shadow:var(--accent-glow)" data-i18n="strategy_h1">Библиотека стратегий</h1>
@@ -619,7 +641,6 @@
       </article>
     </section>
 
-    <!-- FAQ PAGE -->
     <section id="p-faq" class="page" aria-labelledby="faq-heading">
       <h1 id="faq-heading" style="position:absolute;left:-9999px" data-i18n="faq_h1">Часто задаваемые вопросы о Mines</h1>
       <div class="info-card" style="padding:28px;margin-bottom:18px">
@@ -660,26 +681,88 @@
       </div>
     </section>
 
-    <!-- INSTALL PAGE -->
-    <section id="p-install" class="page" aria-labelledby="install-heading">
+    <section id="p-apk" class="page" aria-labelledby="apk-heading">
       <div class="info-card" style="padding:28px">
-        <h2 id="install-heading" style="margin-bottom:22px;font-size:20px;font-weight:900;color:#fff" data-i18n="install_title">Установка на главный экран (PWA)</h2>
-        <div style="margin-bottom:28px">
-          <h3 style="color:var(--accent);margin-bottom:14px;font-size:15px;font-weight:800" data-i18n="install_ios">📱 Для iOS (iPhone/iPad)</h3>
-          <div class="step-card"><div class="step-num">1</div><div class="step-content"><p data-i18n="ios_1">Откройте сайт в браузере <b>Safari</b>.</p></div></div>
-          <div class="step-card"><div class="step-num">2</div><div class="step-content"><p data-i18n="ios_2">Нажмите кнопку <b>«Поделиться»</b> (квадрат со стрелкой вверх).</p></div></div>
-          <div class="step-card"><div class="step-num">3</div><div class="step-content"><p data-i18n="ios_3">Прокрутите вниз и выберите <b>«На экран „Домой"»</b>.</p></div></div>
+        <div style="margin-bottom:24px;">
+          <h1 id="apk-heading" style="font-size:clamp(20px,4vw,26px); font-weight:900; color:var(--accent); text-shadow:var(--accent-glow); margin-bottom:6px;" data-i18n="apk_h1">📱 Установка приложения</h1>
+          <p style="font-size:13px; color:var(--muted); line-height:1.6;" data-i18n="apk_desc">Установите наш веб-сервис как PWA-приложение на телефон для мгновенного доступа к сигналам и демо-игре.</p>
         </div>
-        <div>
-          <h3 style="color:var(--accent);margin-bottom:14px;font-size:15px;font-weight:800" data-i18n="install_android">🤖 Для Android</h3>
-          <div class="step-card"><div class="step-num">1</div><div class="step-content"><p data-i18n="and_1">Нажмите на <b>три точки</b> в углу Chrome.</p></div></div>
-          <div class="step-card"><div class="step-num">2</div><div class="step-content"><p data-i18n="and_2">Нажмите <b>«Установить приложение»</b> или «Добавить на гл. экран».</p></div></div>
-          <div class="step-card"><div class="step-num">3</div><div class="step-content"><p data-i18n="and_3">Подтвердите установку в появившемся окне.</p></div></div>
+
+        <div class="features-row">
+          <div class="feat-card">
+            <div class="feat-icon">⚡</div>
+            <div class="feat-title" data-i18n="feat_1_title">Мгновенный запуск</div>
+            <div class="feat-desc" data-i18n="feat_1_desc">Открывается как нативное приложение</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon">🔔</div>
+            <div class="feat-title" data-i18n="feat_2_title">Уведомления</div>
+            <div class="feat-desc" data-i18n="feat_2_desc">Сигналы прямо на экран</div>
+          </div>
+          <div class="feat-card">
+            <div class="feat-icon">🔒</div>
+            <div class="feat-title" data-i18n="feat_3_title">Безопасно</div>
+            <div class="feat-desc" data-i18n="feat_3_desc">Без лишних разрешений</div>
+          </div>
         </div>
+
+        <div class="os-section">
+          <div class="os-title" data-i18n="apk_and">🤖 Для Android</div>
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3 data-i18n="apk_and_s1_h">Открыть настройки Chrome</h3>
+              <p data-i18n="apk_and_s1_p">Нажмите на иконку трёх точек (⋮) в верхнем углу браузера Chrome.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3 data-i18n="apk_and_s2_h">Добавить на экран</h3>
+              <p data-i18n="apk_and_s2_p">Выберите пункт <b>«Установить приложение»</b> или <b>«Добавить на гл. экран»</b>.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3 data-i18n="apk_and_s3_h">Подтвердить</h3>
+              <p data-i18n="apk_and_s3_p">Нажмите <b>«Установить»</b> в появившемся диалоговом окне.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="os-section">
+          <div class="os-title" data-i18n="apk_ios">🍏 Для iOS (iPhone)</div>
+          <div class="step-card">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3 data-i18n="apk_ios_s1_h">Открыть в Safari</h3>
+              <p data-i18n="apk_ios_s1_p">Убедитесь, что сайт открыт в браузере <b>Safari</b> — не Chrome.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3 data-i18n="apk_ios_s2_h">Нажать «Поделиться»</h3>
+              <p data-i18n="apk_ios_s2_p">Нажмите центральную кнопку <b>«Поделиться»</b> (квадрат со стрелкой вверх ↑).</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3 data-i18n="apk_ios_s3_h">На экран «Домой»</h3>
+              <p data-i18n="apk_ios_s3_p">Прокрутите меню и выберите <b>«На экран "Домой"»</b>. Нажмите «Добавить».</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://lkzq.cc/644450" class="btn-main">
+          <span style="font-size:18px">📥</span>
+          <span data-i18n="apk_btn">СКАЧАТЬ ОРИГИНАЛЬНЫЙ APK</span>
+        </a>
       </div>
     </section>
 
-    <!-- PROMO PAGE -->
     <section id="p-promo" class="page" aria-labelledby="promo-heading">
       <div style="background:linear-gradient(135deg,rgba(0,255,136,0.08) 0%,rgba(0,0,0,0.8) 50%,rgba(0,212,255,0.08) 100%);padding:44px 20px;border-radius:24px;border:1px solid var(--glass-b);position:relative;overflow:hidden">
         <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:var(--accent);filter:blur(90px);opacity:.25;pointer-events:none"></div>
@@ -753,9 +836,23 @@ const i18n = {
     faq_q3:'Что дают ваши сигналы?', faq_a3:'Наш бот анализирует паттерны выдачи и выдаёт точки с вероятностью прохода >85%. Однако помните, что это вспомогательный инструмент, а не 100% гарантия.',
     faq_q4:'Минимальный депозит и вывод?', faq_a4:'Минимальный депозит — 100 ₽, вывод доступен от 500 ₽.',
     faq_support_title:'Остались вопросы?', faq_support_text:'Наша служба поддержки всегда на связи и готова помочь с любыми трудностями.', faq_support_btn:'НАПИСАТЬ В ПОДДЕРЖКУ',
-    install_title:'Установка на главный экран (PWA)', install_ios:'📱 Для iOS (iPhone/iPad)', install_android:'🤖 Для Android',
-    ios_1:'Откройте сайт в браузере Safari.', ios_2:'Нажмите кнопку «Поделиться» (квадрат со стрелкой вверх).', ios_3:'Прокрутите вниз и выберите «На экран „Домой"».',
-    and_1:'Нажмите на три точки в углу Chrome.', and_2:'Нажмите «Установить приложение» или «Добавить на гл. экран».', and_3:'Подтвердите установку в появившемся окне.',
+    
+    /* APK Page Strings */
+    apk_h1:'📱 Установка приложения',
+    apk_desc:'Установите наш веб-сервис как PWA-приложение на телефон для мгновенного доступа к сигналам и демо-игре.',
+    feat_1_title:'Мгновенный запуск', feat_1_desc:'Открывается как нативное приложение',
+    feat_2_title:'Уведомления', feat_2_desc:'Сигналы прямо на экран',
+    feat_3_title:'Безопасно', feat_3_desc:'Без лишних разрешений',
+    apk_and:'🤖 Для Android',
+    apk_and_s1_h:'Открыть настройки Chrome', apk_and_s1_p:'Нажмите на иконку трёх точек (⋮) в верхнем углу браузера Chrome.',
+    apk_and_s2_h:'Добавить на экран', apk_and_s2_p:'Выберите пункт <b>«Установить приложение»</b> или <b>«Добавить на гл. экран»</b>.',
+    apk_and_s3_h:'Подтвердить', apk_and_s3_p:'Нажмите <b>«Установить»</b> в появившемся диалоговом окне.',
+    apk_ios:'🍏 Для iOS (iPhone)',
+    apk_ios_s1_h:'Открыть в Safari', apk_ios_s1_p:'Убедитесь, что сайт открыт в браузере <b>Safari</b> — не Chrome.',
+    apk_ios_s2_h:'Нажать «Поделиться»', apk_ios_s2_p:'Нажмите центральную кнопку <b>«Поделиться»</b> (квадрат со стрелкой вверх ↑).',
+    apk_ios_s3_h:'На экран «Домой»', apk_ios_s3_p:'Прокрутите меню и выберите <b>«На экран "Домой"»</b>. Нажмите «Добавить».',
+    apk_btn:'СКАЧАТЬ ОРИГИНАЛЬНЫЙ APK',
+
     promo_badge:'Ограниченное предложение', promo_h1:'VIP БОНУС 500%', promo_desc:'Активируй секретный код при регистрации, чтобы получить максимальный приоритет при выводе и бонус на депозит.',
     promo_copy_hint:'Скопируй и вставь', promo_copy_btn:'КОПИРОВАТЬ', promo_reg_btn:'ЗАРЕГИСТРИРОВАТЬСЯ 🚀',
     promo_tag1:'Быстрые выплаты', promo_tag2:'Поддержка 24/7', promo_tag3:'Безопасно',
@@ -768,7 +865,7 @@ const i18n = {
     promo_game:'Потренировался в демо? Пора забирать настоящий кэш! Переходи в реальный режим.',
     promo_strategy:'Выбрал рабочую тактику? Примени её на практике с огромным бонусом для старта!',
     promo_faq:'Остались вопросы? Главный ответ — везет тем, кто действует. Начни играть прямо сейчас!',
-    promo_install:'Сохранил приложение? Отлично! Заходи, активируй бонус и выигрывай с комфортом.',
+    promo_apk:'Установил приложение? Отлично! Заходи, активируй бонус и выигрывай с комфортом.',
     promo_promo:'Скопировал промокод? Самое время забрать 500% бонус и начать реальную игру!',
   },
   en: {
@@ -806,9 +903,23 @@ const i18n = {
     faq_q3:'What do your signals do?', faq_a3:'Our bot analyzes patterns and provides cells with >85% pass probability. This is an auxiliary tool.',
     faq_q4:'Minimum deposit and withdrawal?', faq_a4:'Minimum deposit is 1.00 $, withdrawals from 5.00 $.',
     faq_support_title:'Still have questions?', faq_support_text:'Our support team is always available to help.', faq_support_btn:'CONTACT SUPPORT',
-    install_title:'Add to Home Screen (PWA)', install_ios:'📱 For iOS (iPhone/iPad)', install_android:'🤖 For Android',
-    ios_1:'Open the site in Safari.', ios_2:'Tap the Share button (square with arrow).', ios_3:'Scroll down and select "Add to Home Screen".',
-    and_1:'Tap the three dots in Chrome.', and_2:'Tap "Install app" or "Add to home screen".', and_3:'Confirm installation.',
+    
+    /* APK Page Strings */
+    apk_h1:'📱 App Installation',
+    apk_desc:'Install our web service as a PWA app on your phone for instant access to signals and demo gameplay.',
+    feat_1_title:'Instant Launch', feat_1_desc:'Opens like a native app',
+    feat_2_title:'Notifications', feat_2_desc:'Signals to your screen',
+    feat_3_title:'Secure', feat_3_desc:'No extra permissions',
+    apk_and:'🤖 For Android',
+    apk_and_s1_h:'Open Chrome Settings', apk_and_s1_p:'Tap the three dots icon (⋮) in the top corner of Chrome browser.',
+    apk_and_s2_h:'Add to Home Screen', apk_and_s2_p:'Select <b>"Install app"</b> or <b>"Add to Home screen"</b>.',
+    apk_and_s3_h:'Confirm', apk_and_s3_p:'Tap <b>"Install"</b> in the confirmation dialog that appears.',
+    apk_ios:'🍏 For iOS (iPhone)',
+    apk_ios_s1_h:'Open in Safari', apk_ios_s1_p:'Make sure the site is open in <b>Safari</b> browser — not Chrome.',
+    apk_ios_s2_h:'Tap "Share"', apk_ios_s2_p:'Tap the <b>Share</b> button (square with an arrow pointing up ↑).',
+    apk_ios_s3_h:'Add to Home Screen', apk_ios_s3_p:'Scroll down and select <b>"Add to Home Screen"</b>. Tap "Add".',
+    apk_btn:'DOWNLOAD ORIGINAL APK',
+
     promo_badge:'Limited Offer', promo_h1:'VIP BONUS 500%', promo_desc:'Activate the secret code at registration to get the highest withdrawal priority and a deposit bonus.',
     promo_copy_hint:'Copy and paste', promo_copy_btn:'COPY', promo_reg_btn:'REGISTER 🚀',
     promo_tag1:'Fast Payouts', promo_tag2:'24/7 Support', promo_tag3:'Secured',
@@ -821,13 +932,13 @@ const i18n = {
     promo_game:'Practiced in demo? Time to win real cash! Switch to real mode.',
     promo_strategy:'Found a working tactic? Apply it with a massive starting bonus!',
     promo_faq:"Still got questions? The best answer is — action wins. Start playing now!",
-    promo_install:'App saved? Great! Log in, activate your bonus and win in comfort.',
+    promo_apk:'App installed? Great! Log in, activate your bonus and win in comfort.',
     promo_promo:'Copied the promo code? Time to claim the 500% bonus and start playing for real!'
   }
 };
 
 let currentLang = localStorage.getItem('mn_lang') || 'ru';
-const promoTextKeys = { game:'promo_game', strategy:'promo_strategy', faq:'promo_faq', install:'promo_install', promo:'promo_promo' };
+const promoTextKeys = { game:'promo_game', strategy:'promo_strategy', faq:'promo_faq', apk:'promo_apk', promo:'promo_promo' };
 
 function formatCurrency(val, exact = false) {
   if (currentLang === 'en') return '$' + (val / 100).toFixed(2);
