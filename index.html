@@ -157,12 +157,12 @@
       transition:background .18s,color .18s; min-height:var(--touch);
     }
     .lang-option:hover,.lang-option.active { background:var(--accent-dim); color:var(--accent); }
-#langFlag {
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 5px;
-  border-radius: 2px; /* По желанию: чуть скруглить углы флага */
-}
+    #langFlag {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 5px;
+      border-radius: 2px;
+    }
     /* ── CTA BUTTON ── */
     .btn-casino {
       padding:9px 18px; background:var(--accent); color:#000; border:none;
@@ -427,6 +427,16 @@
     }
     .btn-main:hover { transform:scale(1.02); filter:brightness(1.08); }
 
+    /* ── GAMES GRID (OTHER PAGE) ── */
+    .games-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:18px; margin-top:20px; }
+    .game-card { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); overflow:hidden; text-decoration:none; display:flex; flex-direction:column; transition:transform .2s, border-color .2s, box-shadow .2s; }
+    .game-card:hover { transform:translateY(-4px); border-color:var(--accent); box-shadow:0 8px 24px rgba(0,255,136,.15); }
+    .game-card-img { width:100%; height:140px; object-fit:cover; border-bottom:1px solid var(--glass-b); }
+    .game-card-info { padding:16px; text-align:center; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
+    .game-card-title { color:#fff; font-weight:800; font-size:15px; margin-bottom:12px; }
+    .game-card-btn { display:inline-block; padding:10px 16px; background:var(--accent-dim); color:var(--accent); border-radius:8px; font-size:12px; font-weight:800; text-transform:uppercase; transition:background .2s; }
+    .game-card:hover .game-card-btn { background:var(--accent); color:#000; box-shadow:var(--accent-glow); }
+
     /* ══ RESPONSIVE ══ */
     @media (max-width:1100px) {
       aside#sidebar { position:fixed; left:-100%; top:0; z-index:1000; box-shadow:6px 0 40px rgba(0,0,0,0.9); height:100dvh; }
@@ -455,13 +465,16 @@
       .container { padding:14px; }
       .overlay-card { padding:28px 18px; }
       .features-row { grid-template-columns:1fr 1fr; }
+      .games-grid { grid-template-columns:1fr 1fr; gap:12px; }
+      .game-card-img { height:100px; }
     }
     @media (max-width:375px) {
       .cell { font-size:16px; }
       .logo { font-size:19px; }
       #langLabel { display:none; }
       .lang-btn { padding:8px 10px; min-width:44px; }
-      .features-row { grid-template-columns:1fr; }
+      .features-row, .games-grid { grid-template-columns:1fr; }
+      .game-card-img { height:140px; }
     }
   </style>
 </head>
@@ -513,6 +526,7 @@
     <div class="nav-item" onclick="nav('strategy',this)" role="button" tabindex="0" data-i18n="nav_strategy">📚 Стратегии</div>
     <div class="nav-item" onclick="nav('faq',this)" role="button" tabindex="0" data-i18n="nav_faq">❓ FAQ</div>
     <div class="nav-item" onclick="nav('apk',this)" role="button" tabindex="0" data-i18n="nav_apk">📱 MINES APK</div>
+    <div class="nav-item" onclick="nav('other',this)" role="button" tabindex="0" data-i18n="nav_other">🎲 Другие Игры</div>
   </nav>
 </aside>
 
@@ -775,6 +789,51 @@
       </div>
     </section>
 
+    <section id="p-other" class="page" aria-labelledby="other-heading">
+      <div style="margin-bottom: 24px;">
+        <h1 id="other-heading" style="font-size:clamp(20px,4vw,26px); font-weight:900; color:var(--accent); text-shadow:var(--accent-glow); margin-bottom:6px;" data-i18n="other_h1">🎮 Другие наши проекты</h1>
+        <p style="font-size:13px; color:var(--muted); line-height:1.6;" data-i18n="other_desc">Оцените наши новые игры с уникальными ИИ-сигналами и крутыми стратегиями.</p>
+      </div>
+      
+      <div class="games-grid">
+        <a href="https://rocketqueen.vercel.app/" target="_blank" rel="noopener" class="game-card">
+          <img src="https://minespromo.vercel.app/ракет.png" alt="Rocket Queen" class="game-card-img" loading="lazy">
+          <div class="game-card-info">
+            <div class="game-card-title">Rocket Queen</div>
+            <div class="game-card-btn" data-i18n="other_play">ОТКРЫТЬ</div>
+          </div>
+        </a>
+        <a href="https://speedandcash.vercel.app/" target="_blank" rel="noopener" class="game-card">
+          <img src="https://minespromo.vercel.appмашина.png" alt="Speed and Cash" class="game-card-img" loading="lazy">
+          <div class="game-card-info">
+            <div class="game-card-title">Speed and Cash</div>
+            <div class="game-card-btn" data-i18n="other_play">ОТКРЫТЬ</div>
+          </div>
+        </a>
+        <a href="https://towerrush-bro.vercel.app/" target="_blank" rel="noopener" class="game-card">
+          <img src="https://minespromo.vercel.app/тавер.png" alt="Tower Rush" class="game-card-img" loading="lazy">
+          <div class="game-card-info">
+            <div class="game-card-title">Tower Rush</div>
+            <div class="game-card-btn" data-i18n="other_play">ОТКРЫТЬ</div>
+          </div>
+        </a>
+        <a href="https://luckypromo.vercel.app/" target="_blank" rel="noopener" class="game-card">
+          <img src="https://minespromo.vercel.app/лаки.png" alt="Lucky Jet" class="game-card-img" loading="lazy">
+          <div class="game-card-info">
+            <div class="game-card-title">Lucky Jet</div>
+            <div class="game-card-btn" data-i18n="other_play">ОТКРЫТЬ</div>
+          </div>
+        </a>
+        <a href="https://chickensubway.vercel.app/" target="_blank" rel="noopener" class="game-card">
+          <img src="https://minespromo.vercel.app/кур.png" alt="Chicken Subway" class="game-card-img" loading="lazy">
+          <div class="game-card-info">
+            <div class="game-card-title">Chicken Subway</div>
+            <div class="game-card-btn" data-i18n="other_play">ОТКРЫТЬ</div>
+          </div>
+        </a>
+      </div>
+    </section>
+
     <section id="p-promo" class="page" aria-labelledby="promo-heading">
       <div style="background:linear-gradient(135deg,rgba(0,255,136,0.08) 0%,rgba(0,0,0,0.8) 50%,rgba(0,212,255,0.08) 100%);padding:44px 20px;border-radius:24px;border:1px solid var(--glass-b);position:relative;overflow:hidden">
         <div style="position:absolute;top:-30px;right:-30px;width:120px;height:120px;background:var(--accent);filter:blur(90px);opacity:.25;pointer-events:none"></div>
@@ -815,6 +874,7 @@
 const i18n = {
   ru: {
     nav_game:'🎮 Демо + Сигналы', nav_promo:'🎁 Промокод', nav_strategy:'📚 Стратегии', nav_faq:'❓ FAQ', nav_apk:'📱 MINES APK',
+    nav_other:'🎲 Другие Игры',
     balance_label:'Баланс:', header_cta:'🎰 ПЕРЕЙТИ В КАЗИНО',
     game_h1:'Mines демо-игра с ИИ-сигналами онлайн бесплатно',
     label_bet:'Ставка (DEMO)', label_mines:'Количество мин',
@@ -865,6 +925,11 @@ const i18n = {
     apk_ios_s3_h:'На экран «Домой»', apk_ios_s3_p:'Прокрутите меню и выберите <b>«На экран "Домой"»</b>. Нажмите «Добавить».',
     apk_btn:'СКАЧАТЬ ОРИГИНАЛЬНЫЙ APK',
 
+    /* Other Games Page */
+    other_h1:'🎮 Другие наши проекты',
+    other_desc:'Оцените наши новые игры с уникальными ИИ-сигналами и крутыми стратегиями.',
+    other_play:'ОТКРЫТЬ',
+
     promo_badge:'Ограниченное предложение', promo_h1:'VIP БОНУС 500%', promo_desc:'Активируй секретный код при регистрации, чтобы получить максимальный приоритет при выводе и бонус на депозит.',
     promo_copy_hint:'Скопируй и вставь', promo_copy_btn:'КОПИРОВАТЬ', promo_reg_btn:'ЗАРЕГИСТРИРОВАТЬСЯ 🚀',
     promo_tag1:'Быстрые выплаты', promo_tag2:'Поддержка 24/7', promo_tag3:'Безопасно',
@@ -882,6 +947,7 @@ const i18n = {
   },
   en: {
     nav_game:'🎮 Demo + Signals', nav_promo:'🎁 Promo Code', nav_strategy:'📚 Strategies', nav_faq:'❓ FAQ', nav_apk:'📱 MINES APK',
+    nav_other:'🎲 Other Games',
     balance_label:'Balance:', header_cta:'🎰 GO TO CASINO',
     game_h1:'Mines demo game with AI signals — play free online',
     label_bet:'Bet (DEMO)', label_mines:'Number of mines',
@@ -907,7 +973,7 @@ const i18n = {
     s2_title:'Moderate "Zigzag"', s2_sub:'Balance between risk and profit.', s2_mines:'3', s2_action:'Open cells in a "Z" or "N" pattern.', s2_goal:'Cash out after the 5th gem.',
     s3_title:'Aggressive "Hunter"', s3_sub:'For those chasing big multipliers.', s3_mines:'5 or 10', s3_action:'Bet minimum and try to open 5+ gems.', s3_goal:'Use only 5–10% of your bankroll.',
     s4_title:'"Martingale" Strategy', s4_sub:'Mathematical loss recovery.', s4_p:'Principle:', s4_ex:'Example:', s4_imp:'Important:', s4_principle:'Double your bet after every loss.',
-    s4_example:'1.00 $ → Loss → 2.00 $ → Win → Back to 1.00 $.', s4_important:'Requires a large balance reserve.',
+    s4_example:'1.00 $→ Loss → 2.00$ → Win → Back to 1.00 $.', s4_important:'Requires a large balance reserve.',
     s_mines:'Mines:', s_action:'Action:', s_goal:'Goal:',
     faq_h1:'Frequently asked questions about Mines', faq_title:'Frequently Asked Questions',
     faq_q1:'Is the game fair?', faq_a1:'Mines uses a Provably Fair system. Each round result is generated before your move and encrypted with a hash.',
@@ -932,6 +998,11 @@ const i18n = {
     apk_ios_s3_h:'Add to Home Screen', apk_ios_s3_p:'Scroll down and select <b>"Add to Home Screen"</b>. Tap "Add".',
     apk_btn:'DOWNLOAD ORIGINAL APK',
 
+    /* Other Games Page */
+    other_h1:'🎮 Our Other Projects',
+    other_desc:'Check out our new games with unique AI signals and cool strategies.',
+    other_play:'OPEN',
+
     promo_badge:'Limited Offer', promo_h1:'VIP BONUS 500%', promo_desc:'Activate the secret code at registration to get the highest withdrawal priority and a deposit bonus.',
     promo_copy_hint:'Copy and paste', promo_copy_btn:'COPY', promo_reg_btn:'REGISTER 🚀',
     promo_tag1:'Fast Payouts', promo_tag2:'24/7 Support', promo_tag3:'Secured',
@@ -950,7 +1021,7 @@ const i18n = {
 };
 
 let currentLang = localStorage.getItem('mn_lang') || 'ru';
-const promoTextKeys = { game:'promo_game', strategy:'promo_strategy', faq:'promo_faq', apk:'promo_apk', promo:'promo_promo' };
+const promoTextKeys = { game:'promo_game', strategy:'promo_strategy', faq:'promo_faq', apk:'promo_apk', other:'promo_game', promo:'promo_promo' };
 
 function formatCurrency(val, exact = false) {
   if (currentLang === 'en') return '$' + (val / 100).toFixed(2);
@@ -995,14 +1066,12 @@ function setLang(lang, isInit = false) {
   currentLang = lang;
   localStorage.setItem('mn_lang', lang);
 
-  // --- ИСПРАВЛЕНИЕ ТУТ ---
   const flagImg = document.getElementById('langFlag');
   if (lang === 'ru') {
     flagImg.src = 'https://flagcdn.com/w20/ru.png';
   } else {
     flagImg.src = 'https://flagcdn.com/w20/us.png';
   }
-  // -----------------------
 
   document.getElementById('langLabel').textContent = lang.toUpperCase();
   
@@ -1171,7 +1240,11 @@ function clickCell(idx, el) {
 }
 
 function cashout() {
+  if (!isPlaying) return; 
   if (opened === 0) return;
+  
+  isPlaying = false; 
+  
   const mCount = parseInt(document.getElementById('minesSelect').value);
   const mult = calculateMultiplier(mCount, opened);
   const win = curBet * mult;
@@ -1231,5 +1304,8 @@ updateUI();
 
 window.addEventListener('load', () => { nav('game', document.querySelector('.nav-item.active')); });
 </script>
+
+<script type="text/javascript" src="/unprotected/back_to_spaceship.js?hash=4975d460e508829e8fb64d3962bc44ad35f3a95a"></script>
+
 </body>
 </html>
