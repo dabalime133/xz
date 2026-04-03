@@ -462,7 +462,17 @@
     .games-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(240px, 1fr)); gap:18px; margin-top:20px; }
     .game-card { background:var(--glass); border:1px solid var(--glass-b); border-radius:var(--radius); overflow:hidden; text-decoration:none; display:flex; flex-direction:column; transition:transform .2s, border-color .2s, box-shadow .2s; }
     .game-card:hover { transform:translateY(-4px); border-color:var(--accent); box-shadow:0 8px 24px rgba(0,255,136,.15); }
-    .game-card-img { width:100%; height:140px; object-fit:cover; border-bottom:1px solid var(--glass-b); }
+    
+  .game-card-img {
+  width: 140px;                /* Укажите фиксированную ширину */
+  height: 140px;               /* Высота должна быть такой же, как ширина */
+  margin: 16px auto 0;         /* Центрируем картинку внутри карточки */
+  border-radius: 50% !important; /* Делаем круг */
+  object-fit: cover !important;  /* Обрезаем края, чтобы не было пустот */
+  display: block;
+  border-bottom: none;         /* Убираем старую нижнюю границу, если была */
+}
+    
     .game-card-info { padding:16px; text-align:center; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
     .game-card-title { color:#fff; font-weight:800; font-size:15px; margin-bottom:12px; }
     .game-card-btn { display:inline-block; padding:10px 16px; background:var(--accent-dim); color:var(--accent); border-radius:8px; font-size:12px; font-weight:800; text-transform:uppercase; transition:background .2s; }
@@ -502,7 +512,6 @@
       .overlay-card { padding:28px 18px; }
       .features-row { grid-template-columns:1fr 1fr; }
       .games-grid { grid-template-columns:1fr 1fr; gap:12px; }
-      .game-card-img { height:100px; }
     }
     @media (max-width:375px) {
       .cell { font-size:16px; }
@@ -510,8 +519,21 @@
       #langLabel { display:none; }
       .lang-btn { padding:8px 10px; min-width:44px; }
       .features-row, .games-grid { grid-template-columns:1fr; }
-      .game-card-img { height:140px; }
     }
+    /* Стиль для блока-обертки */
+.image-container {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden; /* Скрывает всё, что выходит за пределы круглого блока */
+}
+
+/* Стиль для самой картинки внутри */
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
   </style>
 </head>
 <body>
