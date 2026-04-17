@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mines Land PH — #1 Legit Mines Game | Play & Win</title>
+<meta name="description" content="Mines Land PH — ang pinaka-legit na online mines game sa Pilipinas. Instant cash-out via GCash at Maya. PAGCOR licensed. Laro na, kumita na!">
+<meta name="keywords" content="Mines Land PH, GCash games, legit online mines Philippines, Maya payout games, online mines game PH, kumita online Philippines, mines crash game">
+<meta property="og:title" content="Mines Land PH — Kumita Ka Na! Instant Payout">
+<meta property="og:description" content="The #1 Legit Mines Game in PH. Low stakes, massive multipliers. Withdraw in seconds!">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Новая фиолетово-золотая палитра в стиле Mines Land из фото */
+    --black: #0d0216; /* Глубокий фиолетово-черный */
+    --black2: #160424;
+    --black3: #1f0833;
+    --gold: #FFD700;
+    --gold2: #FF9800;
+    --gold-dim: rgba(255, 152, 0, 0.15);
+    --purple-light: #9c27b0;
+    --purple-glow: rgba(156, 39, 176, 0.4);
+    --fire: #ff4500;
+    --green: #00FF88; /* Оставлен для цифр выигрыша */
+    --red: #FF3B5C;
+    --glass: rgba(255, 255, 255, 0.04);
+    --glass-border: rgba(255, 215, 0, 0.2);
+    --text: #f0e6f5;
+    --text-dim: #a89bb5;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior:smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width:6px; }
+  ::-webkit-scrollbar-track { background:#0d0216; }
+  ::-webkit-scrollbar-thumb { background: linear-gradient(var(--gold), var(--fire)); border-radius:3px; }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content:'';
+    position:fixed; inset:0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:0;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 20px;
+    background: rgba(13, 2, 22, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px rgba(156, 39, 176, 0.2);
+  }
+  .nav-logo {
+    font-family:'Orbitron',sans-serif;
+    font-weight:900; font-size:20px;
+    font-style: italic;
+    color: #fff;
+    text-shadow: 0 0 5px var(--gold), 0 2px 4px rgba(0,0,0,0.8);
+    letter-spacing:1px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .nav-logo span { 
+    background: linear-gradient(180deg, var(--gold), var(--gold2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5));
+  }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--fire));
+    color: #fff; font-weight:800; font-size:13px;
+    padding:9px 20px; border-radius:8px; border:none;
+    cursor:pointer; letter-spacing:0.5px;
+    font-family:'Rajdhani',sans-serif;
+    text-transform:uppercase;
+    transition: transform 0.15s, box-shadow 0.15s;
+    text-decoration:none;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.4);
+  }
+  .nav-cta:hover { transform:scale(1.05); box-shadow:0 0 25px rgba(255, 215, 0, 0.6); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: 120px 20px 60px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+
+  /* Radial glow bg */
+  .hero::after {
+    content:'';
+    position:absolute;
+    width:700px; height:700px;
+    border-radius:50%;
+    background: radial-gradient(circle, rgba(255, 152, 0, 0.15) 0%, rgba(156, 39, 176, 0.1) 40%, transparent 70%);
+    top:40%; left:50%; transform:translate(-50%,-50%);
+    pointer-events:none;
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+  
+  /* LENS FLARE EFFECT */
+  .lens-flare {
+    position: absolute;
+    top: 30%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw; height: 4px;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,0.8) 0%, rgba(255,215,0,0.4) 20%, transparent 70%);
+    box-shadow: 0 0 20px 5px rgba(255, 152, 0, 0.5);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes pulse-glow {
+    0%,100% { transform:translate(-50%,-50%) scale(1); opacity:0.8; }
+    50% { transform:translate(-50%,-50%) scale(1.1); opacity:1; }
+  }
+
+  /* ИНТЕГРАЦИЯ МИНЫ */
+  .hero-bomb-container {
+    position: relative;
+    z-index: 2;
+    margin-bottom: 10px;
+    animation: floatUp 0.8s ease-out both;
+  }
+  .hero-bomb-img {
+    width: 100%;
+    max-width: 220px;
+    filter: drop-shadow(0 15px 25px rgba(0,0,0,0.6)) drop-shadow(0 0 40px rgba(255, 152, 0, 0.5));
+    animation: bombLevitate 3s ease-in-out infinite;
+  }
+  @keyframes bombLevitate {
+    0%, 100% { transform: translateY(0) rotate(-2deg) scale(1); }
+    50% { transform: translateY(-15px) rotate(2deg) scale(1.02); }
+  }
+
+  .hero-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    background: rgba(255, 215, 0, 0.1);
+    border:1px solid rgba(255, 215, 0, 0.3);
+    color: var(--gold); font-size:11px; font-weight:600;
+    padding:5px 14px; border-radius:99px;
+    letter-spacing:1px; text-transform:uppercase;
+    margin-bottom:20px;
+    animation: fadeUp 0.6s ease both;
+    z-index: 2;
+  }
+  .hero-badge::before { content:'●'; font-size:8px; animation: blink 1.2s ease infinite; color: var(--fire); }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+  .hero-title {
+    font-family:'Orbitron',sans-serif;
+    font-size: clamp(36px, 9vw, 64px);
+    font-weight:900;
+    font-style: italic;
+    line-height:1.05;
+    margin-bottom:14px;
+    animation: fadeUp 0.7s 0.1s ease both;
+    z-index: 2;
+    position: relative;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.8);
+  }
+  .hero-title .white-3d { 
+    color: #fff; 
+    text-shadow: 0 3px 0 #888, 0 6px 15px rgba(0,0,0,0.6);
+  }
+  .hero-title .gold-3d { 
+    background:linear-gradient(180deg, #FFFDE4, var(--gold), var(--gold2)); 
+    -webkit-background-clip:text; 
+    -webkit-text-fill-color:transparent;
+    filter: drop-shadow(0 3px 2px rgba(0,0,0,0.8));
+  }
+
+  .hero-sub {
+    font-size:clamp(15px,3.5vw,18px);
+    color: var(--text-dim); max-width:500px; line-height:1.6;
+    margin-bottom:32px;
+    animation: fadeUp 0.7s 0.2s ease both;
+    z-index: 2; position: relative;
+  }
+  .hero-sub strong { color:var(--gold); }
+
+  .hero-btns {
+    display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
+    margin-bottom:48px;
+    animation: fadeUp 0.7s 0.3s ease both;
+    z-index: 2; position: relative;
+  }
+  .btn-primary {
+    display:flex; align-items:center; gap:8px;
+    background: linear-gradient(135deg, var(--gold2), var(--fire));
+    color:#fff; font-weight:800; font-size:16px;
+    padding:16px 36px; border-radius:12px; border:none;
+    cursor:pointer; font-family:'Rajdhani',sans-serif;
+    text-transform:uppercase; letter-spacing:1px;
+    text-decoration:none;
+    transition: all 0.2s;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    box-shadow: 0 6px 0 #b33000, 0 10px 25px rgba(255, 69, 0, 0.5);
+    position:relative; overflow:hidden;
+  }
+  .btn-primary::before {
+    content:'';
+    position:absolute; inset:0;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.3),transparent);
+    transform:translateX(-100%);
+    animation: shimmer 2.5s ease infinite;
+  }
+  @keyframes shimmer { to { transform:translateX(100%); } }
+  .btn-primary:hover { 
+    transform:translateY(-2px); 
+    box-shadow: 0 8px 0 #b33000, 0 15px 35px rgba(255, 215, 0, 0.5); 
+  }
+  .btn-primary:active {
+    transform:translateY(4px);
+    box-shadow: 0 2px 0 #b33000, 0 5px 10px rgba(255, 69, 0, 0.5);
+  }
+
+  .btn-secondary {
+    display:flex; align-items:center; gap:8px;
+    background: rgba(156, 39, 176, 0.15);
+    border:1px solid var(--purple-light);
+    color:#fff; font-weight:700; font-size:15px;
+    padding:16px 32px; border-radius:12px;
+    cursor:pointer; font-family:'Rajdhani',sans-serif;
+    text-transform:uppercase; letter-spacing:0.5px;
+    text-decoration:none;
+    backdrop-filter:blur(10px);
+    transition: all 0.2s;
+    box-shadow: inset 0 0 15px rgba(156,39,176,0.3);
+  }
+  .btn-secondary:hover { background:rgba(156, 39, 176, 0.3); border-color:var(--gold); color: var(--gold); }
+
+  /* ─── MINES GRID VISUAL ─── */
+  .mines-preview {
+    width:min(340px,90vw);
+    animation: fadeUp 0.7s 0.4s ease both;
+    position:relative; z-index:2;
+  }
+  .mines-grid {
+    display:grid; grid-template-columns:repeat(5,1fr);
+    gap:6px; padding:16px;
+    background: rgba(22, 4, 36, 0.6);
+    border:2px solid var(--purple-light);
+    border-radius:16px;
+    backdrop-filter:blur(20px);
+    box-shadow: 0 0 40px rgba(156, 39, 176, 0.3), inset 0 0 20px rgba(0,0,0,0.8);
+  }
+  .mine-cell {
+    aspect-ratio:1;
+    border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px;
+    cursor:default;
+    transition: transform 0.2s;
+    position:relative; overflow:hidden;
+    box-shadow: 0 4px 0 rgba(0,0,0,0.4);
+  }
+  .mine-cell.safe {
+    background: linear-gradient(135deg, #FFC107, #FF9800);
+    border:1px solid #FFE082;
+    animation: cellReveal var(--d,1s) ease both;
+    box-shadow: 0 4px 0 #b36b00, 0 0 15px rgba(255, 193, 7, 0.6);
+  }
+  .mine-cell.safe::after { content: '⭐'; font-size: 16px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.5)); }
+  
+  .mine-cell.mine {
+    background:linear-gradient(135deg, #9C27B0, #4A148C);
+    border:1px solid #E1BEE7;
+    animation: cellReveal var(--d,1.2s) ease both;
+    box-shadow: 0 4px 0 #310b5e, 0 0 20px rgba(156, 39, 176, 0.8);
+  }
+  .mine-cell.mine::after { content: '💀'; font-size: 18px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.8)); }
+  
+  .mine-cell.hidden {
+    background:linear-gradient(135deg, #2a0b45, #140424);
+    border:1px solid rgba(156, 39, 176, 0.3);
+  }
+  .mine-cell.hidden:hover { background: linear-gradient(135deg, #3d1263, #1c0633); transform: translateY(-2px); }
+
+  @keyframes cellReveal {
+    from { transform:scale(0.7) rotateY(90deg); opacity:0; }
+    to   { transform:scale(1) rotateY(0deg); opacity:1; }
+  }
+  .multiplier-badge {
+    margin-top:16px;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    background:rgba(255, 152, 0, 0.1);
+    border:1px solid var(--gold);
+    border-radius:12px; padding:12px 20px;
+    box-shadow: 0 0 20px rgba(255, 152, 0, 0.2);
+  }
+  .mult-label { color:var(--text); font-size:13px; font-weight:600; text-transform: uppercase;}
+  .mult-value {
+    font-family:'Orbitron',sans-serif;
+    font-size:26px; font-weight:900; color:var(--gold);
+    text-shadow:0 0 15px var(--fire);
+    animation: countUp 2s ease forwards;
+    font-style: italic;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(24px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* ─── TRUST BAR ─── */
+  .trust-bar {
+    padding:20px;
+    background: linear-gradient(90deg, rgba(156, 39, 176, 0.05), rgba(255, 152, 0, 0.05), rgba(156, 39, 176, 0.05));
+    border-top:1px solid rgba(156, 39, 176, 0.2);
+    border-bottom:1px solid rgba(156, 39, 176, 0.2);
+  }
+  .trust-scroll {
+    display:flex; align-items:center; gap:40px;
+    overflow-x:auto; -webkit-overflow-scrolling:touch;
+    scrollbar-width:none; padding:4px 0;
+  }
+  .trust-scroll::-webkit-scrollbar { display:none; }
+  .trust-item {
+    display:flex; align-items:center; gap:10px;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .trust-icon {
+    width:36px; height:36px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:18px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  }
+  .trust-icon.gcash { background:linear-gradient(135deg,#0073CF,#005fa3); }
+  .trust-icon.maya  { background:linear-gradient(135deg,#00a651,#007a3d); }
+  .trust-icon.pagcor { background:linear-gradient(135deg,var(--gold),var(--gold2)); color:#000; font-size:11px; font-weight:900; font-family:'Orbitron',sans-serif; }
+  .trust-icon.ssl   { background:rgba(156, 39, 176, 0.3); color:var(--text); border: 1px solid var(--purple-light); }
+  .trust-text { font-size:13px; font-weight:700; color:var(--text); }
+  .trust-sub  { font-size:10px; color:var(--text-dim); }
+  .trust-sep { color:rgba(255,255,255,0.05); font-size:24px; }
+
+  /* ─── SECTION COMMONS ─── */
+  section { padding:80px 20px; position:relative; z-index:1; }
+  .section-tag {
+    display:inline-block;
+    background:rgba(156, 39, 176, 0.2); border:1px solid var(--purple-light);
+    color:var(--gold); font-size:11px; font-weight:800;
+    letter-spacing:2px; text-transform:uppercase;
+    padding:6px 16px; border-radius:99px; margin-bottom:16px;
+    box-shadow: 0 0 15px rgba(156, 39, 176, 0.3);
+  }
+  .section-title {
+    font-family:'Orbitron',sans-serif;
+    font-size:clamp(26px,5vw,42px); font-weight:900;
+    font-style: italic;
+    line-height:1.2; margin-bottom:12px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.8);
+  }
+  .section-sub { color:var(--text-dim); font-size:15px; line-height:1.6; max-width:480px; }
+  .text-center { text-align:center; }
+  .text-center .section-sub { margin:0 auto; }
+
+  /* ─── FEATURES / BENTO ─── */
+  .features-grid {
+    display:grid;
+    grid-template-columns:1fr;
+    gap:16px; margin-top:40px;
+  }
+  @media(min-width:600px) { .features-grid { grid-template-columns:1fr 1fr; } }
+
+  .feat-card {
+    background:var(--black2);
+    border:1px solid rgba(156, 39, 176, 0.3);
+    border-radius:20px; padding:28px;
+    position:relative; overflow:hidden;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.5), 0 4px 15px rgba(0,0,0,0.4);
+  }
+  .feat-card:hover { 
+    transform:translateY(-5px); 
+    box-shadow:0 15px 40px rgba(156, 39, 176, 0.2); 
+    border-color: var(--gold);
+  }
+  .feat-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity:0.6;
+  }
+  .feat-card.accent { border-color:rgba(255, 69, 0, 0.4); }
+  .feat-card.accent::before { background:linear-gradient(90deg,transparent,var(--fire),transparent); }
+
+  .feat-icon { font-size:36px; margin-bottom:16px; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5)); }
+  .feat-title {
+    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:20px;
+    color:var(--gold); margin-bottom:8px; letter-spacing:0.5px;
+    text-transform: uppercase;
+  }
+  .feat-card.accent .feat-title { color:#fff; text-shadow: 0 0 10px var(--fire); }
+  .feat-desc { color:var(--text-dim); font-size:14px; line-height:1.6; }
+  .feat-stat {
+    margin-top:16px; padding:10px 16px; display: inline-block;
+    background:rgba(255,215,0,0.1); border-radius:8px; border: 1px solid rgba(255,215,0,0.2);
+    font-family:'Orbitron',sans-serif; font-size:16px; font-weight:700;
+    color:var(--gold);
+  }
+  .feat-card.accent .feat-stat { background:rgba(255, 69, 0, 0.1); border-color: rgba(255, 69, 0, 0.3); color:#fff; }
+
+  /* ─── HOW TO PLAY ─── */
+  .how-bg {
+    background:linear-gradient(180deg, var(--black) 0%, var(--black3) 50%, var(--black) 100%);
+  }
+  .steps-grid {
+    display:grid; grid-template-columns:1fr;
+    gap:0; margin-top:40px; position:relative;
+  }
+  @media(min-width:700px) { .steps-grid { grid-template-columns:repeat(3,1fr); gap:20px; } }
+
+  .step-card {
+    background:var(--black2);
+    border:1px solid rgba(156, 39, 176, 0.2);
+    border-radius:20px; padding:32px 24px;
+    text-align:center;
+    position:relative; overflow:hidden;
+    margin-bottom:16px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  }
+  @media(min-width:700px) { .step-card { margin-bottom:0; } }
+
+  .step-num {
+    font-family:'Orbitron',sans-serif;
+    font-size:56px; font-weight:900; line-height:1; font-style: italic;
+    background:linear-gradient(135deg, rgba(255,215,0,0.8), rgba(255,69,0,0.2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    margin-bottom:12px;
+  }
+  .step-emoji { font-size:42px; margin-bottom:16px; display:block; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6)); }
+  .step-title {
+    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:20px;
+    color:#fff; margin-bottom:10px; text-transform: uppercase;
+  }
+  .step-desc { color:var(--text-dim); font-size:14px; line-height:1.6; }
+  .step-arrow {
+    display:none;
+    position:absolute; right:-14px; top:50%;
+    transform:translateY(-50%);
+    color:var(--gold); font-size:24px; z-index:2;
+  }
+  @media(min-width:700px) { .step-arrow { display:block; } }
+  .step-card:last-child .step-arrow { display:none; }
+
+  .step-card.highlight {
+    border-color:var(--gold);
+    background:linear-gradient(180deg, rgba(255, 215, 0, 0.05), var(--black2));
+    box-shadow: 0 0 30px rgba(255, 152, 0, 0.15);
+  }
+
+  /* ─── LIVE STATS ─── */
+  .live-stats-bg {
+    background: var(--black3);
+    border-top:1px solid rgba(156, 39, 176, 0.3);
+    border-bottom:1px solid rgba(156, 39, 176, 0.3);
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+  }
+  .live-header {
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:24px;
+  }
+  .live-dot {
+    display:flex; align-items:center; gap:7px;
+    color:var(--fire); font-size:13px; font-weight:700;
+    letter-spacing:1px; text-transform:uppercase;
+  }
+  .live-dot::before { content:'●'; animation:blink 1s ease infinite; }
+  .live-count { color:var(--text); font-size:13px; font-weight: 600; background: rgba(255,255,255,0.1); padding: 4px 10px; border-radius: 6px;}
+
+  .stats-table-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:16px; border: 1px solid rgba(156, 39, 176, 0.4); background: rgba(0,0,0,0.3); }
+  .stats-table {
+    width:100%; min-width:400px;
+    border-collapse:collapse;
+    font-size:14px;
+  }
+  .stats-table thead th {
+    padding:16px; text-align:left;
+    background:rgba(156, 39, 176, 0.2);
+    color:var(--gold); font-size:11px;
+    text-transform:uppercase; letter-spacing:1.5px; font-weight:800;
+    border-bottom:2px solid rgba(156, 39, 176, 0.4);
+  }
+  .stats-table tbody tr {
+    border-bottom:1px solid rgba(255,255,255,0.05);
+    transition: background 0.2s;
+  }
+  .stats-table tbody tr:hover { background:rgba(156, 39, 176, 0.1); }
+  .stats-table tbody tr.new-row {
+    animation: rowSlideIn 0.5s ease both;
+  }
+  @keyframes rowSlideIn {
+    from { opacity:0; transform:translateY(-10px); background:rgba(255, 152, 0, 0.2); }
+    to   { opacity:1; transform:translateY(0); background:transparent; }
+  }
+  .stats-table td { padding:14px 16px; }
+  .td-user { display:flex; align-items:center; gap:10px; }
+  .td-avatar {
+    width:32px; height:32px; border-radius:8px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:14px; font-weight:800; flex-shrink:0;
+    background:linear-gradient(135deg,var(--purple-light), #4A148C);
+    color:#fff; border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  }
+  .td-name { font-weight:600; color:#fff; font-size:14px; }
+  .td-location { font-size:11px; color:var(--text-dim); }
+  .td-bet { color:var(--text-dim); font-family: 'Rajdhani', sans-serif; font-size: 15px;}
+  .td-multiplier {
+    font-family:'Orbitron',sans-serif; font-weight:700; font-size:14px;
+  }
+  .td-multiplier.high { color:var(--gold); text-shadow:0 0 10px rgba(255,215,0,0.6); }
+  .td-multiplier.mid  { color:#fff; text-shadow: 0 0 8px rgba(255,255,255,0.4); }
+  .td-multiplier.low  { color:var(--text-dim); }
+  .td-payout { font-weight:800; color:var(--green); font-family: 'Rajdhani', sans-serif; font-size: 16px; letter-spacing: 0.5px;}
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background:var(--black); }
+  .testi-grid {
+    display:grid; grid-template-columns:1fr;
+    gap:16px; margin-top:40px;
+  }
+  @media(min-width:600px) { .testi-grid { grid-template-columns:1fr 1fr; } }
+
+  .testi-card {
+    background:var(--black2);
+    border:1px solid rgba(156, 39, 176, 0.2);
+    border-radius:20px; padding:24px;
+    position:relative;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  }
+  .testi-card::before {
+    content:'"'; position:absolute; top:12px; right:20px;
+    font-size:56px; line-height:1; font-style: italic;
+    color:rgba(156, 39, 176, 0.2); font-family:serif;
+  }
+  .testi-head { display:flex; align-items:center; gap:12px; margin-bottom:16px; }
+  .testi-avatar {
+    width:44px; height:44px; border-radius:10px;
+    background:linear-gradient(135deg, #2a0b45, #140424);
+    border:2px solid var(--purple-light);
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; flex-shrink:0;
+  }
+  .testi-name { font-weight:700; font-size:15px; color:#fff; }
+  .testi-handle { font-size:12px; color:var(--text-dim); }
+  .testi-stars { color:var(--gold); font-size:14px; margin-bottom:10px; letter-spacing:2px; text-shadow: 0 0 5px rgba(255,215,0,0.5); }
+  .testi-text { color:var(--text-dim); font-size:14px; line-height:1.7; }
+  .testi-text strong { color:#fff; background: rgba(255,215,0,0.1); padding: 0 4px; border-radius: 4px; }
+  .testi-amount { margin-top:16px; font-family:'Rajdhani',sans-serif; font-weight:700; color:var(--gold); font-size:18px; display: inline-block; border-bottom: 2px dashed var(--gold-dim); padding-bottom: 2px;}
+
+  /* ─── CTA FOOTER ─── */
+  .cta-footer {
+    background:linear-gradient(135deg, #1f0833, #0d0216);
+    border-top:2px solid var(--purple-light);
+    padding:80px 20px;
+    text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .cta-footer::before {
+    content:''; position:absolute;
+    width:500px; height:500px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255, 69, 0, 0.15), transparent 70%);
+    top:50%; left:50%; transform:translate(-50%,-50%);
+    pointer-events:none;
+  }
+  .bonus-badge {
+    display:inline-block;
+    background:linear-gradient(135deg, rgba(255, 69, 0, 0.15), rgba(156, 39, 176, 0.1));
+    border:1px solid var(--fire);
+    border-radius:16px; padding:16px 32px;
+    margin-bottom:32px;
+    box-shadow: 0 0 30px rgba(255, 69, 0, 0.2);
+    position: relative; z-index: 2;
+  }
+  .bonus-label { color:var(--gold); font-size:12px; font-weight: 700; text-transform:uppercase; letter-spacing:2px; margin-bottom: 4px;}
+  .bonus-value {
+    font-family:'Orbitron',sans-serif; font-weight:900; font-style: italic;
+    font-size:clamp(40px,8vw,64px);
+    background:linear-gradient(180deg, #fff, var(--gold), var(--gold2));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,0.6));
+  }
+  .bonus-sub { color:var(--text); font-size:13px; margin-top: 4px;}
+  .cta-title {
+    font-family:'Orbitron',sans-serif; font-weight:900; font-style: italic;
+    font-size:clamp(24px,5vw,36px); margin-bottom:12px; position: relative; z-index: 2;
+  }
+  .cta-sub { color:var(--text-dim); font-size:15px; max-width:460px; margin:0 auto 32px; line-height:1.6; position: relative; z-index: 2;}
+  .cta-methods {
+    display:flex; align-items:center; justify-content:center;
+    gap:10px; margin-top:24px; flex-wrap:wrap; position: relative; z-index: 2;
+  }
+  .method-pill {
+    display:flex; align-items:center; gap:6px;
+    background:rgba(0,0,0,0.5);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:8px; padding:8px 16px;
+    font-size:12px; color:var(--text); font-weight: 600;
+  }
+
+  /* ─── FOOTER STRIP ─── */
+  .footer-strip {
+    background:#08010d;
+    border-top:1px solid rgba(255,255,255,0.05);
+    padding:24px 20px 100px; /* Extra bottom padding for sticky nav */
+    text-align:center;
+    color:var(--text-dim); font-size:12px; line-height:1.8;
+  }
+  .footer-strip a { color:var(--gold); text-decoration:none; opacity: 0.8; }
+  .footer-strip a:hover { opacity: 1; text-decoration: underline; }
+
+  /* ─── FLOATING WINS ─── */
+  #float-wins {
+    position:fixed; bottom:90px; left:12px;
+    z-index:50; display:flex; flex-direction:column; gap:8px;
+    pointer-events:none;
+  }
+  .float-win {
+    display:flex; align-items:center; gap:10px;
+    background:rgba(22, 4, 36, 0.95);
+    border:1px solid var(--purple-light);
+    border-left: 4px solid var(--gold);
+    border-radius:12px; padding:10px 14px;
+    font-size:13px; backdrop-filter:blur(12px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    animation: floatIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), floatOut 0.4s ease 3s forwards;
+    pointer-events:none;
+  }
+  .float-win .fw-name { font-weight:700; color:#fff; }
+  .float-win .fw-amt  { color:var(--gold); font-weight:800; font-family:'Rajdhani',sans-serif; font-size: 15px; text-shadow: 0 0 5px rgba(255,215,0,0.4);}
+  @keyframes floatIn  { from { opacity:0; transform:translateX(-30px) scale(0.9); } to { opacity:1; transform:translateX(0) scale(1); } }
+  @keyframes floatOut { from { opacity:1; transform: translateY(0); } to { opacity:0; transform: translateY(-10px); } }
+
+  /* ─── BOTTOM STICKY CTA ─── */
+  .sticky-cta {
+    position:fixed; bottom:0; left:0; right:0; z-index:99;
+    padding:14px 16px;
+    background:rgba(13, 2, 22, 0.95);
+    backdrop-filter:blur(20px);
+    border-top:1px solid rgba(156, 39, 176, 0.4);
+    box-shadow: 0 -4px 20px rgba(0,0,0,0.6);
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .sticky-text { font-size:12px; color:var(--text-dim); flex:1; min-width:0; line-height: 1.4;}
+  .sticky-text strong { color:var(--gold); display:block; font-size:14px; text-transform: uppercase; font-family: 'Rajdhani', sans-serif;}
+  .sticky-btn {
+    background:linear-gradient(135deg, var(--gold2), var(--fire));
+    color:#fff; font-weight:800; font-size:14px;
+    padding:12px 24px; border-radius:10px; border:none;
+    cursor:pointer; font-family:'Rajdhani',sans-serif;
+    text-transform:uppercase; letter-spacing:0.5px;
+    white-space:nowrap; flex-shrink:0;
+    text-decoration:none;
+    box-shadow: 0 4px 0 #b33000, 0 4px 10px rgba(255, 69, 0, 0.4);
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  .sticky-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 0px 0 #b33000;
+  }
+
+  /* ─── UTILS ─── */
+  .highlight-gold  { color:var(--gold); }
+  .highlight-fire  { color:var(--fire); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <span style="color:#fff;-webkit-text-fill-color:#fff;background:none;text-shadow: 0 2px 4px rgba(0,0,0,0.8);">MINES</span>
+    <span>LAND</span>
+  </div>
+  <a href="https://lkiv.cc/dea2" class="nav-cta">Play Now 🎮</a>
+</nav>
+
+<section class="hero">
+  <div class="lens-flare"></div>
+  
+  <div class="hero-badge">🇵🇭 Live in Philippines • PAGCOR Licensed</div>
+
+  <div class="hero-bomb-container">
+    <img src="мина.png" alt="Mines Land Bomb" class="hero-bomb-img">
+  </div>
+
+  <h1 class="hero-title">
+    <span class="gold-3d">Kumita Ka Na!</span><br>
+    <span class="white-3d">The #1 Legit</span><br>
+    <span class="gold-3d">Mines Game</span>
+  </h1>
+
+  <p class="hero-sub">
+    <strong>Pera</strong> agad! Play with as low as ₱20 and cash out<br>
+    instantly via <strong>GCash or Maya</strong>. Mabilis. Legit. Sulit.
+  </p>
+
+  <div class="hero-btns">
+    <a href="https://lkiv.cc/dea2" class="btn-primary">
+      🔥 Play & Win via GCash
+    </a>
+    <a href="https://lkiv.cc/dea2" class="btn-secondary">
+      💣 Claim ₱100 Bonus
+    </a>
+  </div>
+
+  <div class="mines-preview">
+    <div class="mines-grid" id="heroGrid"></div>
+    <div class="multiplier-badge">
+      <span class="mult-label">Current Multiplier</span>
+      <span class="mult-value" id="multVal">3.24x</span>
+    </div>
+  </div>
+</section>
+
+<div class="trust-bar">
+  <div class="trust-scroll">
+    <div class="trust-item">
+      <div class="trust-icon gcash">💙</div>
+      <div>
+        <div class="trust-text">GCash</div>
+        <div class="trust-sub">Instant Payout</div>
+      </div>
+    </div>
+    <div class="trust-sep">|</div>
+    <div class="trust-item">
+      <div class="trust-icon maya">💚</div>
+      <div>
+        <div class="trust-text">Maya</div>
+        <div class="trust-sub">Instant Payout</div>
+      </div>
+    </div>
+    <div class="trust-sep">|</div>
+    <div class="trust-item">
+      <div class="trust-icon pagcor">PGC</div>
+      <div>
+        <div class="trust-text">PAGCOR</div>
+        <div class="trust-sub">Licensed & Legal</div>
+      </div>
+    </div>
+    <div class="trust-sep">|</div>
+    <div class="trust-item">
+      <div class="trust-icon ssl">🔒</div>
+      <div>
+        <div class="trust-text">SSL Secure</div>
+        <div class="trust-sub">256-bit Encrypted</div>
+      </div>
+    </div>
+    <div class="trust-sep">|</div>
+    <div class="trust-item">
+      <div class="trust-icon" style="background:rgba(255,215,0,0.1);font-size:18px; color: var(--gold); border: 1px solid rgba(255,215,0,0.3);">⚡</div>
+      <div>
+        <div class="trust-text">2,847 Online</div>
+        <div class="trust-sub">Playing Right Now</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="text-center">
+    <span class="section-tag">Why Mines Land</span>
+    <h2 class="section-title">Bakit <span style="color:var(--gold)">Mines Land</span>?</h2>
+    <p class="section-sub">Everything you need para kumita — fast, fair, at legit.</p>
+  </div>
+
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon">💰</div>
+      <div class="feat-title">Low Stakes, Mataas na Kita</div>
+      <div class="feat-desc">Start with just ₱20. Hit the right tiles and multiply your bet up to 24x in seconds. No biglaang losses — you control when to cash out.</div>
+      <div class="feat-stat">Up to 24x Multiplier</div>
+    </div>
+
+    <div class="feat-card accent">
+      <div class="feat-icon">⚡</div>
+      <div class="feat-title">Instant GCash Cashout</div>
+      <div class="feat-desc">Mag-withdraw ka anytime. Pumupunta ang pera directly sa iyong GCash o Maya wallet — average ng 45 seconds lang!</div>
+      <div class="feat-stat">~45 sec Withdrawal</div>
+    </div>
+
+    <div class="feat-card">
+      <div class="feat-icon">🎲</div>
+      <div class="feat-title">Provably Fair</div>
+      <div class="feat-desc">Every round is cryptographically verified. You can check every result yourself — walang daya, walang manipulation. 100% legit.</div>
+      <div class="feat-stat">Blockchain Verified</div>
+    </div>
+
+    <div class="feat-card accent">
+      <div class="feat-icon">📱</div>
+      <div class="feat-title">Mobile-First Design</div>
+      <div class="feat-desc">Designed for Philippine mobile networks. Gumagana kahit mabagal ang internet. No lag, no bugs — just pure gameplay kasama ang smooth UX.</div>
+      <div class="feat-stat">Works on 3G</div>
+    </div>
+  </div>
+</section>
+
+<section class="how-bg" id="how">
+  <div class="text-center">
+    <span class="section-tag">Get Started</span>
+    <h2 class="section-title">Paano Maglaro <span style="color:var(--gold)">?</span></h2>
+    <p class="section-sub">3 steps lang — simple pa sa TikTok!</p>
+  </div>
+
+  <div class="steps-grid">
+    <div class="step-card highlight">
+      <div class="step-num">01</div>
+      <span class="step-emoji">💳</span>
+      <div class="step-title">Mag-Deposit via GCash</div>
+      <div class="step-desc">Fund your account using GCash or Maya. Minimum ₱20 lang! Instant ang crediting — walang waiting time.</div>
+      <div class="step-arrow">›</div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <span class="step-emoji">💣</span>
+      <div class="step-title">Piliin ang Number of Mines</div>
+      <div class="step-desc">Mas maraming mines = mas mataas na multiplier. Pumili ng 1 hanggang 24 mines. Ikaw ang bahala ng risk mo.</div>
+      <div class="step-arrow">›</div>
+    </div>
+
+    <div class="step-card highlight">
+      <div class="step-num">03</div>
+      <span class="step-emoji">💰</span>
+      <div class="step-title">Cash Out Anytime!</div>
+      <div class="step-desc">I-click ang Cash Out before mo mabuksan ang mine. Direct sa GCash o Maya ang pera mo. <strong style="color:var(--gold)">Kumita ka na!</strong></div>
+    </div>
+  </div>
+</section>
+
+<section class="live-stats-bg">
+  <div class="live-header">
+    <span class="section-tag" style="margin:0">Live Winners</span>
+    <div style="display:flex;align-items:center;gap:16px">
+      <span class="live-dot">Live</span>
+      <span class="live-count" id="liveCount">3,241 players</span>
+    </div>
+  </div>
+  <h2 class="section-title" style="margin-bottom:8px">Real-Time <span style="color:var(--gold)">Payouts</span> 💸</h2>
+  <p style="color:var(--text-dim);font-size:14px;margin-bottom:24px">Mga totoong players, totoong panalo. Legit ito! 🔥</p>
+
+  <div class="stats-table-wrap">
+    <table class="stats-table">
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Bet</th>
+          <th>Multiplier</th>
+          <th>Payout 💰</th>
+        </tr>
+      </thead>
+      <tbody id="statsBody"></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="text-center">
+    <span class="section-tag">Social Proof</span>
+    <h2 class="section-title">Mga <span style="color:var(--gold)">Sabi ng Players</span> 🗣️</h2>
+    <p class="section-sub">Hindi kami nagsisinungaling — basa ang reviews ng mga tunay na manlalaro.</p>
+  </div>
+
+  <div class="testi-grid" style="margin-top:36px">
+    <div class="testi-card">
+      <div class="testi-head">
+        <div class="testi-avatar">🧑</div>
+        <div>
+          <div class="testi-name">Rhenz M.</div>
+          <div class="testi-handle">@rhenz_manila • <span style="color:#4267B2">Facebook Group</span></div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Grabe pre! <strong>₱500 naging ₱4,200</strong> in 20 minutes lang! Legit ang GCash withdrawal, wala pang 1 minute nag-receive na ako. Lahat ng kaibigan ko naglalaro na rin. Sulit talaga!</div>
+      <div class="testi-amount">Won ₱4,200 via GCash 🏆</div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-head">
+        <div class="testi-avatar">👩</div>
+        <div>
+          <div class="testi-name">Ate Joanna C.</div>
+          <div class="testi-handle">@joanna_cebu • <span style="color:#0088cc">Telegram</span></div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Dati skeptical ako sa online games pero <strong>legit pala Mines Land</strong>. Nag-withdraw ako ₱1,800 via Maya at in 30 seconds nasa wallet na! Mabilis ang support, responsive pa. Bet ko ito!</div>
+      <div class="testi-amount">Won ₱1,800 via Maya ✅</div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-head">
+        <div class="testi-avatar">🧔</div>
+        <div>
+          <div class="testi-name">Kuya Dan B.</div>
+          <div class="testi-handle">@kuya_dan_bohol • <span style="color:#4267B2">Facebook</span></div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Ginamit ko ang ₱100 bonus nila, naging <strong>₱2,600</strong>. Kahit mabagal internet dito sa probinsya, tumatakbo nang maayos. Provably fair talaga — nacheck ko mismo ang hash. Recommended!</div>
+      <div class="testi-amount">Won ₱2,600 🎯</div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-head">
+        <div class="testi-avatar">💁</div>
+        <div>
+          <div class="testi-name">Nica R.</div>
+          <div class="testi-handle">@nica_davao • <span style="color:#0088cc">Telegram Group</span></div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Para sa mga nag-aalangan — <strong>try niyo na</strong>! PAGCOR licensed ito, kaya ligtas. Ang dali pa ng interface, kahit first time player. Ang laki ng tulong sa extra income ko. Salamat Mines Land! 🙏</div>
+      <div class="testi-amount">₱8,400+ total earnings 🔥</div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-footer" id="play">
+  <div class="bonus-badge">
+    <div class="bonus-label">First Deposit Bonus</div>
+    <div class="bonus-value">+100%</div>
+    <div class="bonus-sub">Up to ₱500 LIBRE para sa baguhan!</div>
+  </div>
+
+  <h2 class="cta-title">Handa Ka Na Ba? <span style="color:var(--gold)">Laro Na!</span></h2>
+  <p class="cta-sub">Join 847,000+ Filipino players na kumikita with Mines Land. Register in 60 seconds, deposit via GCash, at manalo ka na!</p>
+
+  <a href="https://lkiv.cc/dea2" class="btn-primary" style="font-size:18px;padding:20px 48px;margin:0 auto;display:inline-flex;box-shadow: 0 8px 0 #b33000, 0 0 50px rgba(255,69,0,0.5);">
+    🚀 Maglaro Na — FREE ₱100 Bonus!
+  </a>
+
+  <div class="cta-methods">
+    <div class="method-pill">💙 GCash</div>
+    <div class="method-pill">💚 Maya</div>
+    <div class="method-pill">🏦 Bank Transfer</div>
+    <div class="method-pill">🔒 SSL Secure</div>
+    <div class="method-pill">⚡ Instant</div>
+  </div>
+</section>
+
+<div class="footer-strip">
+  <p>© 2025 Mines Land PH. PAGCOR Licensed. All Rights Reserved.</p>
+  <p style="margin-top:8px">
+    <a href="#">Privacy Policy</a> · <a href="#">Terms & Conditions</a> · <a href="#">Responsible Gaming</a>
+  </p>
+  <p style="margin-top:12px;color:rgba(168, 155, 181, 0.4);font-size:11px">
+    ⚠️ 18+ Only. Gambling involves risk. Play responsibly. If you feel you have a gambling problem, please seek help.
+  </p>
+</div>
+
+<div id="float-wins"></div>
+
+<div class="sticky-cta">
+  <div class="sticky-text">
+    <strong>🎁 Welcome Bonus: +100% up to ₱500</strong>
+    New players only · GCash & Maya accepted
+  </div>
+  <a href="https://lkiv.cc/dea2" class="sticky-btn">Claim Now ⚡</a>
+</div>
+
+<script>
+// ─── BUILD HERO GRID ───
+const heroGrid = document.getElementById('heroGrid');
+const gridState = [
+  'safe','safe','safe','hidden','hidden',
+  'hidden','safe','safe','mine','hidden',
+  'safe','hidden','safe','safe','hidden',
+  'hidden','safe','mine','hidden','safe',
+  'safe','safe','hidden','safe','hidden'
+];
+const delays = [0.1,0.2,0.15,0.7,0.8,0.9,0.3,0.25,0.6,1.0,0.35,0.95,0.4,0.45,1.05,1.1,0.5,0.7,1.15,0.55,0.6,0.65,1.2,0.7,1.25];
+gridState.forEach((t,i) => {
+  const cell = document.createElement('div');
+  cell.className = `mine-cell ${t}`;
+  cell.style.setProperty('--d', delays[i]+'s');
+  heroGrid.appendChild(cell);
+});
+
+// ─── ANIMATED MULTIPLIER ───
+const multEl = document.getElementById('multVal');
+function animMult() {
+  let target = (Math.random()*18+1.5).toFixed(2);
+  let current = parseFloat(multEl.textContent);
+  let step = (target - current) / 30;
+  let i = 0;
+  const t = setInterval(() => {
+    current += step;
+    multEl.textContent = current.toFixed(2)+'x';
+    if(++i>=30) { clearInterval(t); multEl.textContent=target+'x'; setTimeout(animMult, 2500); }
+  }, 50);
+}
+setTimeout(animMult, 2500);
+
+// ─── LIVE STATS TABLE ───
+const players = [
+  {name:'R***z M.',loc:'Manila',avatar:'R',bet:500,mult:8.42,high:true},
+  {name:'J***a C.',loc:'Cebu',avatar:'J',bet:200,mult:3.11,mid:true},
+  {name:'D***n B.',loc:'Bohol',avatar:'D',bet:1000,mult:14.85,high:true},
+  {name:'N***a R.',loc:'Davao',avatar:'N',bet:100,mult:2.50,mid:true},
+  {name:'M***o S.',loc:'QC',avatar:'M',bet:750,mult:6.70,high:true},
+  {name:'A***a L.',loc:'Makati',avatar:'A',bet:300,mult:1.85,low:true},
+  {name:'K***o D.',loc:'Pampanga',avatar:'K',bet:150,mult:4.40,mid:true},
+  {name:'P***o V.',loc:'Batangas',avatar:'P',bet:2000,mult:11.22,high:true},
+  {name:'G***e T.',loc:'Iloilo',avatar:'G',bet:50,mult:3.75,mid:true},
+  {name:'C***s F.',loc:'Laguna',avatar:'C',bet:500,mult:7.00,high:true},
+];
+const tbody = document.getElementById('statsBody');
+
+function renderRow(p, isNew) {
+  const payout = (p.bet * p.mult).toFixed(0);
+  const cls = p.high ? 'high' : p.mid ? 'mid' : 'low';
+  return `
+    <tr class="${isNew?'new-row':''}">
+      <td><div class="td-user">
+        <div class="td-avatar">${p.avatar}</div>
+        <div>
+          <div class="td-name">${p.name}</div>
+          <div class="td-location">📍 ${p.loc}</div>
+        </div>
+      </div></td>
+      <td class="td-bet">₱${p.bet.toLocaleString()}</td>
+      <td><span class="td-multiplier ${cls}">${p.mult.toFixed(2)}x</span></td>
+      <td class="td-payout">+₱${(+payout).toLocaleString()}</td>
+    </tr>`;
+}
+
+function initTable() {
+  tbody.innerHTML = players.slice(0,7).map(p=>renderRow(p,false)).join('');
+}
+initTable();
+
+let rowIdx = 7;
+setInterval(() => {
+  const p = players[rowIdx % players.length];
+  p.bet = [50,100,200,300,500,1000][Math.floor(Math.random()*6)];
+  p.mult = parseFloat((Math.random()*20+1.2).toFixed(2));
+  p.high = p.mult > 8; p.mid = p.mult >= 3 && !p.high; p.low = !p.high && !p.mid;
+  const rows = tbody.querySelectorAll('tr');
+  if(rows.length >= 7) rows[rows.length-1].remove();
+  tbody.insertAdjacentHTML('afterbegin', renderRow(p, true));
+  rowIdx++;
+}, 2200);
+
+// ─── LIVE PLAYER COUNT ───
+const liveEl = document.getElementById('liveCount');
+let count = 3241;
+setInterval(() => {
+  count += Math.floor(Math.random()*12 - 4);
+  liveEl.textContent = count.toLocaleString()+' players';
+}, 3000);
+
+// ─── FLOATING WIN NOTIFICATIONS ───
+const fwNames = ['R***z','A***a','K***o','M***o','J***n','D***e','P***l','G***e','N***a','C***s'];
+const fwCities = ['Manila','Cebu','Davao','QC','Makati','Iloilo','Pampanga','Batangas','Laguna','Bohol'];
+const fwContainer = document.getElementById('float-wins');
+
+function showFloatWin() {
+  const name = fwNames[Math.floor(Math.random()*fwNames.length)];
+  const city = fwCities[Math.floor(Math.random()*fwCities.length)];
+  const amt  = (Math.floor(Math.random()*30+2)*100);
+  const el   = document.createElement('div');
+  el.className = 'float-win';
+  el.innerHTML = `<span style="font-size:16px;filter:drop-shadow(0 0 2px rgba(255,215,0,0.8));">💎</span><span class="fw-name">${name} (${city})</span><span style="color:var(--text-dim);font-size:12px">won</span><span class="fw-amt">+₱${amt.toLocaleString()}</span>`;
+  fwContainer.appendChild(el);
+  setTimeout(() => { el.remove(); }, 3300);
+}
+setInterval(showFloatWin, 3500);
+setTimeout(showFloatWin, 1200);
+
+// ─── MINE GRID RESET ANIMATION ───
+setInterval(() => {
+  const cells = heroGrid.querySelectorAll('.mine-cell');
+  cells.forEach(c => {
+    c.className = 'mine-cell hidden';
+  });
+  setTimeout(() => {
+    cells.forEach((c, i) => {
+      setTimeout(() => {
+        const t = gridState[i];
+        c.className = `mine-cell ${t}`;
+        c.style.setProperty('--d', '0.3s');
+      }, i * 60);
+    });
+  }, 600);
+}, 6000);
+</script>
+</body>
+</html>
